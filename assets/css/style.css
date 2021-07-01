@@ -52,3 +52,10 @@ li a:hover{
   .show {
     display: block;
   }
+
+  .uk-button-default {
+    background-color: var(--TM-Light);
+    margin-top: 5px;
+    color: var(--TM-Black-Pearl);
+    border: 1px solid black;
+}
