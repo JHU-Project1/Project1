@@ -44,3 +44,11 @@ li a:hover{
     color: var(--TM-Gray);
     text-decoration: none;
 }
+
+.hide {
+    display: none;
+  }
+
+  .show {
+    display: block;
+  }

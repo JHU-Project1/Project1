@@ -24,7 +24,11 @@
                               <div>
                                         <div class="uk-card uk-card-default uk-card-body ">
                                                   <input class="uk-input" type="text" placeholder="Search for an Event">
+                                                  <button type = "submit" id="searchBtn" class="btn saveBtn">Search</button>
                                         </div>
+                                        <p class="hide errorMessage"><span><i class="fas fa-skull-crossbones"></i></span>  No events matching your search exist.  Try again.  <span><i class="fas fa-skull-crossbones"></i></span></p>
+                                        <hr>
+                                        <div class="eventList" id="eventList"></div>
                               </div>
 
                               <div>
@@ -58,6 +62,10 @@
                     <!-- UIkit JS -->
                     <script src="https://cdn.jsdelivr.net/npm/uikit@3.7.0/dist/js/uikit.min.js"></script>
                     <script src="https://cdn.jsdelivr.net/npm/uikit@3.7.0/dist/js/uikit-icons.min.js"></script>
+                    <!-- Font Awesome -->
+                    <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" data-auto-a11y="true"></script>
+                    <!-- My javascript -->
+                    <script src="assets/js/script.js"></script>
           </body>
 
 </html>
