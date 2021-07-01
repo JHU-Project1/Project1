@@ -1,29 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <!-- Tailwind CSS CDN -->
-    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
-    <title>Homepage</title>
+          <head>
+                    <meta charset="UTF-8">
+                    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  </head>
+                    <!-- UIkit CSS -->
+                    <!-- Link to Docs - https://getuikit.com/docs/introduction  -->
+                    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.7.0/dist/css/uikit.min.css" />
+                    <link rel="stylesheet" href="assets/css/style.css">
 
-  <body>
-<div class="container w-24">
+                    <title>Event Finder+</title>
+
+          </head>
+
+          <body class="uk-background-primary">
+
+                    <div class="header">
+                              <h1>Event Finder+</h1>
+                    </div>
+                    <div class="uk-child-width-expand@s uk-text-center" uk-grid>
+                              <div>
+                                        <div class="uk-card uk-card-default uk-card-body ">
+                                                  <input class="uk-input" type="text" placeholder="Search for an Event">
+                                        </div>
+                              </div>
+
+                              <div>
+                                        <div class="uk-card uk-card-default uk-card-body">
+                                                  <h2>Explore</h2>
+                                                  <ul>
+                                                            <li><a href="#">Buy Tickets</a></li>
+                                                            <li><a href="#">Venue Information</a></li>
+                                                            <li><a href="#">Additional City Information</a></li>
+                                                  </ul>
+                                        </div>
+                              </div>
+
+                    </div>
+                    <div class="uk-child-width-expand@s uk-text-center" uk-grid>
+
+                    </div>
 
 
-  
+                    <!-- Here's a hidden div once the event results are populated -->
+                    <div style="display: none;">
+                              <div class="uk-card uk-card-default uk-card-body">
+                                        <h3>Event Name</h3>
+                                        <img src="#" alt="Event Image">
+                                        <p>Event Description</p>
+                              </div>
 
-</div>
+                    </div>
 
 
-
-
-    <script src="./assets/js/script.js"></script>
-
-  </body>
+                    <!-- UIkit JS -->
+                    <script src="https://cdn.jsdelivr.net/npm/uikit@3.7.0/dist/js/uikit.min.js"></script>
+                    <script src="https://cdn.jsdelivr.net/npm/uikit@3.7.0/dist/js/uikit-icons.min.js"></script>
+          </body>
 
 </html>
