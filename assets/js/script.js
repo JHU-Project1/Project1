@@ -4,11 +4,13 @@ var showDataEl = document.querySelector(".showData");
 var eventListEl = document.getElementById("eventList");
 
 var baseApiUrl = "https://app.ticketmaster.com/";
-var base2ApiUrl = "discovery/v2/events/";
+var base2ApiUrl = "discovery/v2/events.json?";
 var apiKey = "&apikey=SPbppXACrSXrFuZja5OQe7e47oQVPVkO";
-var pageSize = "&5";
+var pageSize = "&size=5";
 
 var savedTicketInfo = [];
+var eventName;
+var keyword;
 
 //Get content from local storage for use
 function init() {
@@ -31,12 +33,26 @@ function makeButtonsFromSaved() {
     }
 }
 
+//Capture the event name from search button
+function getEvent(event) {
+    event.preventDefault();
+    eventName = searchText.value.toUpperCase();
+    search();
+}
+
+//Use the event name from previously generated buttons
+function previousEvent(event) {
+    event.preventDefault();
+    eventName = event.target.textContent;
+    search();
+}
+
 
 //Take in city and get weather
 function search(event) {
-    //event.preventDefault();
-    var keyword = "Coldplay";
-    var specURL = baseApiUrl + base2ApiUrl + "?" + keyword + pageSize + apiKey;
+    keyword = "keyword=" + eventName;
+    //Query the API for an event based upon keyword and pagesize
+    var specURL = baseApiUrl + base2ApiUrl + keyword + pageSize + apiKey;
 
     fetch(specURL, {
         dataType: "json"
@@ -49,6 +65,4 @@ function search(event) {
       });
 } 
 
-search();
-
-//searchBtnEl.addEventListener("click", search);
+searchBtnEl.addEventListener("click", getEvent);
