@@ -23,7 +23,7 @@ function init() {
     }
 }
 
-//Turn saved info into city buttons
+//Turn saved info into event buttons
 function makeButtonsFromSaved() {
     for (var i = 0; i < savedTicketInfo.length; i++) {
         var btnx = document.createElement("button");
@@ -48,7 +48,7 @@ function previousEvent(event) {
 }
 
 
-//Take in city and get weather
+//Take in event and get API response
 function search(event) {
     keyword = "keyword=" + eventName;
     //Query the API for an event based upon keyword and pagesize
