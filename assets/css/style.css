@@ -8,7 +8,7 @@
 }
 
 .uk-background-primary {
-    background-color: var(--TM-Black-Pearl);
+    /* background-color: var(--TM-Black-Pearl); */
 }
 
 h1, h2, h3, h4, h5 {
@@ -20,15 +20,18 @@ h1, h2, h3, h4, h5 {
     background-color: var(--TM-Blue);
     color: var(--TM-Light);
     padding: 5px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 
 }
 
 .uk-card {
+    
           background-color: var(--TM-Blue);
           color: var(--TM-Light);
           border: 1px solid;
           border-color: var(--TM-Light);
           border-radius: 10px;
+          box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
 li {
@@ -59,3 +62,14 @@ li a:hover{
     color: var(--TM-Black-Pearl);
     border: 1px solid black;
 }
+  .uk-button-default:hover {
+      background-color: rgb(218, 218, 218);
+      border: 1px solid black;
+    
+}
+  .uk-button-default:focus {
+      background-color: rgb(218, 218, 218);
+      border: 1px solid black;
+    
+}
+
