@@ -11,20 +11,24 @@
                     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.7.0/dist/css/uikit.min.css" />
                     <link rel="stylesheet" href="assets/css/style.css">
 
-                    <title>Event Finder+</title>
+                    <title>Home | Event Finder+</title>
 
           </head>
 
-          <body class="uk-background-primary">
+          <body class="uk-background-default">
                     <div class="header">
                               <h1>Event Finder+</h1>
                     </div>
-                    <div class="uk-child-width-expand@s uk-text-center" uk-grid>
+
+                    <div class="uk-flex-center" uk-grid>
+
+                              <!-- search -->
                               <div>
                                         <div class="uk-card uk-card-default uk-card-body ">
                                                   <input class="uk-input" id="searchText" type="text"
                                                             placeholder="Search for an Event">
-                                                  <button class= "uk-button uk-button-default uk-width-1-1 uk-margin-small-bottom" type="submit" id="searchBtn"
+                                                  <button class="uk-button uk-button-default uk-width-1-1 uk-margin-small-bottom"
+                                                            type="submit" id="searchBtn"
                                                             class="btn saveBtn">Search</button>
                                         </div>
                                         <p class="hide errorMessage"><span><i
@@ -34,7 +38,31 @@
                                         <hr>
                                         <div class="eventList" id="eventList"></div>
                               </div>
-
+                    </div>
+                    <div class="uk-child-width-expand@s uk-text-center" uk-grid>
+                              <div>
+                                        <div class="uk-card uk-card-default uk-card-body">
+                                                  <h3>Search Results</h3>
+                                                  <p class="searchResults" id="result1">Result</p>
+                                                  <p class="searchResults" id="result1">Result</p>
+                                                  <p class="searchResults" id="result1">Result</p>
+                                                  <p class="searchResults" id="result1">Result</p>
+                                                  <p class="searchResults" id="result1">Result</p>
+                                        </div>
+                              </div>
+                    </div>
+                    <div class="uk-child-width-expand@s uk-text-center" uk-grid>
+                              <div>
+                                        <div class="uk-card uk-card-default uk-card-body">
+                                                  <h2>Event Info</h2>
+                                                  <ul>
+                                                            <h3>Event Name</h3>
+                                                            <p>URL</p>
+                                                            <p>Start Time</p>
+                                                            <p>Price Range</p>
+                                                  </ul>
+                                        </div>
+                              </div>
                               <div>
                                         <div class="uk-card uk-card-default uk-card-body">
                                                   <h2>Explore</h2>
@@ -46,19 +74,9 @@
                                         </div>
                               </div>
                     </div>
-                    <div class="uk-child-width-expand@s uk-text-center" uk-grid>
-
-                    </div>
 
 
-                    <!-- Here's a hidden div once the event results are populated -->
-                    <div style="display: none;">
-                              <div class="uk-card uk-card-default uk-card-body">
-                                        <h3>Event Name</h3>
-                                        <img src="#" alt="Event Image">
-                                        <p>Event Description</p>
-                              </div>
-                    </div>
+
 
 
                     <!-- UIkit JS -->
