@@ -66,3 +66,4 @@ function search(event) {
 } 
 
 searchBtnEl.addEventListener("click", getEvent);
+
