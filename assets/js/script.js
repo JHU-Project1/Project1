@@ -61,8 +61,60 @@ function search(event) {
         return response.json();
     })
     .then(function (data) {
-        console.log(data);
+        
+        playWithData(data);
       });
 } 
+
+function playWithData(data) {
+    //If a bad search was performed, no data will be returned.
+    if (!data.hasOwnProperty("_embedded")) {
+        searchText.value = "";
+        errorMessageEl.setAttribute("style", "display: block"); //Would like to use show class here and remove hide class
+        return;
+    }
+
+    for (var i=0; i < data._embedded.events.length; i++) {
+        var baseData = data._embedded.events[i];
+        var baseData2 = baseData._embedded.venues[0];
+        
+        if (baseData.hasOwnProperty("images")){
+            var eventImage = baseData.images[0].url;
+            console.log(eventImage);
+        }
+
+        if (baseData.hasOwnProperty("seatmap")){
+            var seatMap = baseData.seatmap.staticUrl;
+            console.log(seatMap);
+        }
+
+        var url = baseData.url;
+        console.log(url);
+
+        var priceRangeMin = baseData.priceRanges[0].min;
+        console.log(priceRangeMin);
+
+        var priceRangeMax = baseData.priceRanges[0].max;
+        console.log(priceRangeMax);
+
+        var startDate = baseData.dates.start.localDate;
+        console.log(startDate);
+
+        var localTime = baseData.dates.start.localTime;
+        console.log(localTime);
+
+        var eventName = baseData2.name;
+        console.log(eventName);
+
+        var eventCity = baseData2.city.name;
+        console.log(eventCity);
+
+        if (baseData2.hasOwnProperty("state")){
+            var eventState = baseData2.state.stateCode;
+            console.log(eventState);
+        }
+    }
+    searchText.value = "";
+}
 
 searchBtnEl.addEventListener("click", getEvent);
