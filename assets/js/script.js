@@ -3,6 +3,9 @@ var errorMessageEl = document.querySelector(".errorMessage");
 var showDataEl = document.querySelector(".showData");
 var eventListEl = document.getElementById("eventList");
 
+var resultParentEl = document.getElementById("searchResultsParent");
+
+
 var baseApiUrl = "https://app.ticketmaster.com/";
 var base2ApiUrl = "discovery/v2/events.json?";
 var apiKey = "&apikey=SPbppXACrSXrFuZja5OQe7e47oQVPVkO";
@@ -31,7 +34,8 @@ function makeButtonsFromSaved(savedTicketInfo) {
     for (var i = 0; i < savedTicketInfo.length; i++) {
         var btnx = document.createElement("button");
         btnx.textContent = savedTicketInfo[i].eventName; //Need to replace city here
-        btnx.classList.add("saveBtn"); //Add appropriate classes here
+        btnx.classList.add("saveBtn", "event"); //Add appropriate classes here and when they are first created in current session
+        btnx.setAttribute("id", savedTicketInfo[i].recordID);
         eventListEl.appendChild(btnx);
     }
 }
@@ -64,7 +68,7 @@ function search(event) {
         return response.json();
     })
     .then(function (data) {
-        
+        console.log(data);
         playWithData(data);
       });
 } 
@@ -90,6 +94,7 @@ function playWithData(data) {
         //Only remember the last 3 searches when page refreshed and remove old buttons
         if (savedTicketInfo.length > 2) {
             var removeButtonID = savedTicketInfo[0].recordID;
+            console.log(removeButtonID);
             document.getElementById(removeButtonID).remove();
             savedTicketInfo.shift();
         }
@@ -98,48 +103,120 @@ function playWithData(data) {
         localStorage.setItem("savedTicketInfo", JSON.stringify(savedTicketInfo));
         var btn = document.createElement("button");
         btn.textContent = newEventInfo.eventName;
+        console.log(newEventInfo.recordID);
         btn.setAttribute("id", newEventInfo.recordID);
         btn.classList.add("saveBtn", "event"); //Add whatever classes you want for style
         eventListEl.appendChild(btn);
     }
 
-    //Loop through our events and pull out useful content for display
+    //resultParentEl.innerHTML = "";
     for (var i=0; i < data._embedded.events.length; i++) {
+    //    var resultListEli = document.getElementById("result"+i);
+     //   resultListEli.children.innerHTML="";
+        //var eventImageEl = document.createElement("span");
+           // eventImageEl.textContent = "";
+    }
+
+    //Loop through our events and pull out useful content for display.  Display it to the screen.
+    for (var i=0; i < data._embedded.events.length; i++) {
+
+        resultListEli = document.getElementById("result"+i);
+
         var baseData = data._embedded.events[i];
         var baseData2 = baseData._embedded.venues[0];
         
         var eventVenue = baseData2.name;
 
-        if (baseData2.hasOwnProperty("city")){
-            var eventCity = baseData2.city.name;
+        //If a venue exists then post results on screen for the event (could have 0-5 results)
+        if (eventVenue) {
+            //Add a statement here to unhide resultListEli (this should then only display content for 0-5 results returned)
+            
+            var eventVenueEl = document.createElement("p");
+            //eventVenueEl.innerHTML = "";
+            eventVenueEl.setAttribute("id", "result"+i+"Venue");
+            eventVenueEl.textContent = "Venue: " + eventVenue + " ";
+            resultListEli.appendChild(eventVenueEl);
+    
+            if (baseData2.hasOwnProperty("city")){
+                var eventCity = baseData2.city.name;
+
+                var eventCityEl = document.createElement("span");
+                //eventCityEl.innerHTML = "";
+                eventCityEl.setAttribute("id", "result"+i+"City");
+                eventCityEl.textContent = "Location: " + eventCity + ", ";
+                eventVenueEl.appendChild(eventCityEl);
+            }
+            if (baseData2.hasOwnProperty("state")){
+                var eventState = baseData2.state.stateCode;
+
+                var eventStateEl = document.createElement("span");
+                //eventStateEl.innerHTML = "";
+                eventStateEl.setAttribute("id", "result"+i+"State");
+                eventStateEl.textContent = eventState + " ";
+                eventVenueEl.appendChild(eventStateEl);
+            }
+    
+            if (baseData.dates.hasOwnProperty("start")){
+                var startDate = baseData.dates.start.localDate;
+                var localTime = baseData.dates.start.localTime;
+                startDate = moment(startDate, "YYYY-MM-DD").format("MM/DD/YYYY");
+                localTime = moment(localTime, "HH-mm-ss").format("h:mm A");
+
+                var eventStartDateEl = document.createElement("span");
+                //eventStartDateEl.innerHTML = "";
+                eventStartDateEl.setAttribute("id", "result"+i+"startDate");
+                eventStartDateEl.textContent = "Day/Time: " + startDate + " " + localTime;
+                eventVenueEl.appendChild(eventStartDateEl);
+
+                //var eventlocalTimeEl = document.createElement("span");
+               // eventlocalTimeEl.setAttribute("id", "result"+i+"localTime");
+                //eventlocalTimeEl.textContent = localTime + " ";
+                //eventVenueEl.appendChild(eventlocalTimeEl);
+            }
+    
+            if (baseData.hasOwnProperty("images")){
+                var eventImage = baseData.images[0].url;
+
+                var eventImageEl = document.createElement("span");
+                //eventImageEl.innerHTML = "";
+                eventImageEl.setAttribute("id", "result"+i+"ImageLink");
+                eventImageEl.innerHTML = "<img src=" + eventImage + "></span>";
+                eventVenueEl.appendChild(eventImageEl);
+            }
+            if (baseData.hasOwnProperty("seatmap")){
+                var seatMap = baseData.seatmap.staticUrl;
+
+                var seatMapEl = document.createElement("span");
+                //seatMapEl.innerHTML = "";
+                seatMapEl.setAttribute("id", "result"+i+"seatMap");
+                seatMapEl.innerHTML = "<img src=" + seatMap + "></span>";
+                eventVenueEl.appendChild(seatMapEl);
+            }
+    
+            var url = baseData.url;
+            var eventUrlEl = document.createElement("span");
+            //eventUrlEl.innerHTML = "";
+            eventUrlEl.setAttribute("id", "result"+i+"Url");
+            eventUrlEl.innerHTML = "<a href=" + url + "> Buy Tickets </a></span>";
+            eventVenueEl.appendChild(eventUrlEl);
+    
+            if (baseData.hasOwnProperty("priceRanges")){
+                var priceRangeMin = baseData.priceRanges[0].min;
+                var priceRangeMax = baseData.priceRanges[0].max;
+
+                var eventPriceRangeEl = document.createElement("span");
+                //eventPriceRangeEl.innerHTML = "";
+                eventPriceRangeEl.setAttribute("id", "result"+i+"priceRange");
+                eventPriceRangeEl.textContent = "Min Cost: " + priceRangeMin + " Max Cost: " + priceRangeMax + " ";
+                eventVenueEl.appendChild(eventPriceRangeEl);
+            }
+    
+            var tempObject = {eventName, eventVenue, eventCity, eventState, startDate, localTime, eventImage, seatMap, url, priceRangeMin, priceRangeMax};
+            console.log("Item: " + i)
+            console.log(tempObject);
+    
         }
-        if (baseData2.hasOwnProperty("state")){
-            var eventState = baseData2.state.stateCode;
-        }
-
-        if (baseData.hasOwnProperty("start")){
-            var startDate = baseData.dates.start.localDate;
-            var localTime = baseData.dates.start.localTime;
-        }
-
-        if (baseData.hasOwnProperty("images")){
-            var eventImage = baseData.images[0].url;
-        }
-        if (baseData.hasOwnProperty("seatmap")){
-            var seatMap = baseData.seatmap.staticUrl;
-        }
-
-        var url = baseData.url;
-
-        if (baseData.hasOwnProperty("priceRanges")){
-            var priceRangeMin = baseData.priceRanges[0].min;
-            var priceRangeMax = baseData.priceRanges[0].max;
-        }
-
-        var tempObject = {eventName, eventVenue, eventCity, eventState, startDate, localTime, eventImage, seatMap, url, priceRangeMin, priceRangeMax};
-
-        console.log(tempObject);
-
+        
     }
     //Empty the search window
     searchText.value = "";
