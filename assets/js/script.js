@@ -124,14 +124,19 @@ function playWithData(data) {
         if (document.getElementById("contentParentResult"+i)) {
             document.getElementById("contentParentResult"+i).innerHTML = "";
         };
+        if (document.getElementById("seatMapParentResult"+i)) {
+            document.getElementById("seatMapParentResult"+i).innerHTML = "";
+        };
+    
     }
 
     //Loop through our events and pull out useful content for display.  Display it to the screen.
     for (var i=0; i < data._embedded.events.length; i++) {
 
-        resultListEli = document.getElementById("result"+i);
+        //resultListEli = document.getElementById("result"+i);
         imageParentEl = document.getElementById("imageParentResult"+i);
-        ContentParentEl = document.getElementById("contentParentResult"+i);
+        contentParentEl = document.getElementById("contentParentResult"+i);
+        seatMapParentEl = document.getElementById("seatMapParentResult"+i);
 
         var baseData = data._embedded.events[i];
         var baseData2 = baseData._embedded.venues[0];
@@ -148,25 +153,26 @@ function playWithData(data) {
 
                 var eventImageEl = document.createElement("img");
                 eventImageEl.src = eventImage;
-                //eventImageEl.innerHTML = "";
                 eventImageEl.setAttribute("id", "result"+i+"ImageLink");
-                //eventImageEl.innerHTML = "<img src=" + eventImage + "></span>";
-                //document.getElementById("result"+i+"ImageLink").src=eventImage;
                 imageParentEl.appendChild(eventImageEl);
             }
 
-            
-            //eventVenueEl.innerHTML = "";
+            var eventTitle = baseData.name;
+            var eventTitleEl = document.createElement("h3");
+            eventTitleEl.setAttribute("id", "result"+i+"eventTitle");
+            eventTitleEl.textContent = "Event: " + eventTitle + " ";
+            contentParentEl.appendChild(eventTitleEl);
+
+
             var eventVenueEl = document.createElement("p");
             eventVenueEl.setAttribute("id", "result"+i+"Venue");
             eventVenueEl.textContent = "Venue: " + eventVenue + " ";
-            ContentParentEl.appendChild(eventVenueEl);
+            contentParentEl.appendChild(eventVenueEl);
     
             if (baseData2.hasOwnProperty("city")){
                 var eventCity = baseData2.city.name;
 
                 var eventCityEl = document.createElement("span");
-                //eventCityEl.innerHTML = "";
                 eventCityEl.setAttribute("id", "result"+i+"City");
                 eventCityEl.textContent = "Location: " + eventCity + ", ";
                 eventVenueEl.appendChild(eventCityEl);
@@ -175,7 +181,6 @@ function playWithData(data) {
                 var eventState = baseData2.state.stateCode;
 
                 var eventStateEl = document.createElement("span");
-                //eventStateEl.innerHTML = "";
                 eventStateEl.setAttribute("id", "result"+i+"State");
                 eventStateEl.textContent = eventState + " ";
                 eventVenueEl.appendChild(eventStateEl);
@@ -188,20 +193,13 @@ function playWithData(data) {
                 localTime = moment(localTime, "HH-mm-ss").format("h:mm A");
 
                 var eventStartDateEl = document.createElement("span");
-                //eventStartDateEl.innerHTML = "";
                 eventStartDateEl.setAttribute("id", "result"+i+"startDate");
                 eventStartDateEl.textContent = "Day/Time: " + startDate + " " + localTime;
                 eventVenueEl.appendChild(eventStartDateEl);
-
-                //var eventlocalTimeEl = document.createElement("span");
-               // eventlocalTimeEl.setAttribute("id", "result"+i+"localTime");
-                //eventlocalTimeEl.textContent = localTime + " ";
-                //eventVenueEl.appendChild(eventlocalTimeEl);
             }
     
             var url = baseData.url;
             var eventUrlEl = document.createElement("span");
-            //eventUrlEl.innerHTML = "";
             eventUrlEl.setAttribute("id", "result"+i+"Url");
             eventUrlEl.innerHTML = "<a href=" + url + "> Buy Tickets </a></span>";
             eventVenueEl.appendChild(eventUrlEl);
@@ -211,7 +209,6 @@ function playWithData(data) {
                 var priceRangeMax = baseData.priceRanges[0].max;
 
                 var eventPriceRangeEl = document.createElement("span");
-                //eventPriceRangeEl.innerHTML = "";
                 eventPriceRangeEl.setAttribute("id", "result"+i+"priceRange");
                 eventPriceRangeEl.textContent = "Min Cost: " + priceRangeMin + " Max Cost: " + priceRangeMax + " ";
                 eventVenueEl.appendChild(eventPriceRangeEl);
@@ -220,11 +217,10 @@ function playWithData(data) {
             if (baseData.hasOwnProperty("seatmap")){
                 var seatMap = baseData.seatmap.staticUrl;
 
-                var seatMapEl = document.createElement("span");
-                //seatMapEl.innerHTML = "";
+                var seatMapEl = document.createElement("img");
+                seatMapEl.src = seatMap;
                 seatMapEl.setAttribute("id", "result"+i+"seatMap");
-                seatMapEl.innerHTML = "<img src=" + seatMap + "></span>";
-                eventVenueEl.appendChild(seatMapEl);
+                seatMapParentEl.appendChild(seatMapEl);
             }
     
             var tempObject = {eventName, eventVenue, eventCity, eventState, startDate, localTime, eventImage, seatMap, url, priceRangeMin, priceRangeMax};
