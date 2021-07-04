@@ -77,17 +77,28 @@ function playWithData(data) {
         return;
     }
 
-    //Save info to local storage.  Left this as an object for potential later use.
+    var recordID = Math.floor(Math.random() * 1000000);
+    //Left as an object for potential future use.
     newEventInfo = { 
         eventName,
+        recordID
     }
 
+    //  Save to local storage.  Ensure that search hasn't already been done before and then save.
     var found = savedTicketInfo.findIndex(x => x.eventName === newEventInfo.eventName);
     if (found === -1) {
+        //Only remember the last 3 searches when page refreshed and remove old buttons
+        if (savedTicketInfo.length > 2) {
+            var removeButtonID = savedTicketInfo[0].recordID;
+            document.getElementById(removeButtonID).remove();
+            savedTicketInfo.shift();
+        }
+        
         savedTicketInfo.push(newEventInfo);
         localStorage.setItem("savedTicketInfo", JSON.stringify(savedTicketInfo));
         var btn = document.createElement("button");
-        btn.textContent = eventName;
+        btn.textContent = newEventInfo.eventName;
+        btn.setAttribute("id", newEventInfo.recordID);
         btn.classList.add("saveBtn", "event"); //Add whatever classes you want for style
         eventListEl.appendChild(btn);
     }
