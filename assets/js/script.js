@@ -117,10 +117,21 @@ function playWithData(data) {
            // eventImageEl.textContent = "";
     }
 
+    for (var i=0; i < data._embedded.events.length; i++) {
+        if (document.getElementById("imageParentResult"+i)) {
+            document.getElementById("imageParentResult"+i).innerHTML = "";
+        };
+        if (document.getElementById("contentParentResult"+i)) {
+            document.getElementById("contentParentResult"+i).innerHTML = "";
+        };
+    }
+
     //Loop through our events and pull out useful content for display.  Display it to the screen.
     for (var i=0; i < data._embedded.events.length; i++) {
 
         resultListEli = document.getElementById("result"+i);
+        imageParentEl = document.getElementById("imageParentResult"+i);
+        ContentParentEl = document.getElementById("contentParentResult"+i);
 
         var baseData = data._embedded.events[i];
         var baseData2 = baseData._embedded.venues[0];
@@ -131,11 +142,25 @@ function playWithData(data) {
         if (eventVenue) {
             //Add a statement here to unhide resultListEli (this should then only display content for 0-5 results returned)
             
-            var eventVenueEl = document.createElement("p");
+
+            if (baseData.hasOwnProperty("images")){
+                var eventImage = baseData.images[0].url;
+
+                var eventImageEl = document.createElement("img");
+                eventImageEl.src = eventImage;
+                //eventImageEl.innerHTML = "";
+                eventImageEl.setAttribute("id", "result"+i+"ImageLink");
+                //eventImageEl.innerHTML = "<img src=" + eventImage + "></span>";
+                //document.getElementById("result"+i+"ImageLink").src=eventImage;
+                imageParentEl.appendChild(eventImageEl);
+            }
+
+            
             //eventVenueEl.innerHTML = "";
+            var eventVenueEl = document.createElement("p");
             eventVenueEl.setAttribute("id", "result"+i+"Venue");
             eventVenueEl.textContent = "Venue: " + eventVenue + " ";
-            resultListEli.appendChild(eventVenueEl);
+            ContentParentEl.appendChild(eventVenueEl);
     
             if (baseData2.hasOwnProperty("city")){
                 var eventCity = baseData2.city.name;
@@ -174,25 +199,6 @@ function playWithData(data) {
                 //eventVenueEl.appendChild(eventlocalTimeEl);
             }
     
-            if (baseData.hasOwnProperty("images")){
-                var eventImage = baseData.images[0].url;
-
-                var eventImageEl = document.createElement("span");
-                //eventImageEl.innerHTML = "";
-                eventImageEl.setAttribute("id", "result"+i+"ImageLink");
-                eventImageEl.innerHTML = "<img src=" + eventImage + "></span>";
-                eventVenueEl.appendChild(eventImageEl);
-            }
-            if (baseData.hasOwnProperty("seatmap")){
-                var seatMap = baseData.seatmap.staticUrl;
-
-                var seatMapEl = document.createElement("span");
-                //seatMapEl.innerHTML = "";
-                seatMapEl.setAttribute("id", "result"+i+"seatMap");
-                seatMapEl.innerHTML = "<img src=" + seatMap + "></span>";
-                eventVenueEl.appendChild(seatMapEl);
-            }
-    
             var url = baseData.url;
             var eventUrlEl = document.createElement("span");
             //eventUrlEl.innerHTML = "";
@@ -209,6 +215,16 @@ function playWithData(data) {
                 eventPriceRangeEl.setAttribute("id", "result"+i+"priceRange");
                 eventPriceRangeEl.textContent = "Min Cost: " + priceRangeMin + " Max Cost: " + priceRangeMax + " ";
                 eventVenueEl.appendChild(eventPriceRangeEl);
+            }
+
+            if (baseData.hasOwnProperty("seatmap")){
+                var seatMap = baseData.seatmap.staticUrl;
+
+                var seatMapEl = document.createElement("span");
+                //seatMapEl.innerHTML = "";
+                seatMapEl.setAttribute("id", "result"+i+"seatMap");
+                seatMapEl.innerHTML = "<img src=" + seatMap + "></span>";
+                eventVenueEl.appendChild(seatMapEl);
             }
     
             var tempObject = {eventName, eventVenue, eventCity, eventState, startDate, localTime, eventImage, seatMap, url, priceRangeMin, priceRangeMax};
