@@ -9,6 +9,7 @@ var apiKey = "&apikey=SPbppXACrSXrFuZja5OQe7e47oQVPVkO";
 var pageSize = "&size=5";
 
 var savedTicketInfo = [];
+var newEventInfo = [];
 var eventName;
 var keyword;
 
@@ -19,15 +20,17 @@ function init() {
         return;
     } else {
         savedTicketInfo = JSON.parse(localStorage.getItem("savedTicketInfo"));
+        makeButtonsFromSaved(savedTicketInfo)
         return savedTicketInfo;
     }
+
 }
 
 //Turn saved info into event buttons
-function makeButtonsFromSaved() {
+function makeButtonsFromSaved(savedTicketInfo) {
     for (var i = 0; i < savedTicketInfo.length; i++) {
         var btnx = document.createElement("button");
-        btnx.textContent = savedTicketInfo[i].city; //Need to replace city here
+        btnx.textContent = savedTicketInfo[i].eventName; //Need to replace city here
         btnx.classList.add("saveBtn"); //Add appropriate classes here
         eventListEl.appendChild(btnx);
     }
@@ -74,47 +77,64 @@ function playWithData(data) {
         return;
     }
 
+    //Save info to local storage.  Left this as an object for potential later use.
+    newEventInfo = { 
+        eventName,
+    }
+
+    var found = savedTicketInfo.findIndex(x => x.eventName === newEventInfo.eventName);
+    if (found === -1) {
+        savedTicketInfo.push(newEventInfo);
+        localStorage.setItem("savedTicketInfo", JSON.stringify(savedTicketInfo));
+        var btn = document.createElement("button");
+        btn.textContent = eventName;
+        btn.classList.add("saveBtn", "event"); //Add whatever classes you want for style
+        eventListEl.appendChild(btn);
+    }
+
+    //Loop through our events and pull out useful content for display
     for (var i=0; i < data._embedded.events.length; i++) {
         var baseData = data._embedded.events[i];
         var baseData2 = baseData._embedded.venues[0];
         
-        if (baseData.hasOwnProperty("images")){
-            var eventImage = baseData.images[0].url;
-            console.log(eventImage);
+        var eventVenue = baseData2.name;
+
+        if (baseData2.hasOwnProperty("city")){
+            var eventCity = baseData2.city.name;
+        }
+        if (baseData2.hasOwnProperty("state")){
+            var eventState = baseData2.state.stateCode;
         }
 
+        if (baseData.hasOwnProperty("start")){
+            var startDate = baseData.dates.start.localDate;
+            var localTime = baseData.dates.start.localTime;
+        }
+
+        if (baseData.hasOwnProperty("images")){
+            var eventImage = baseData.images[0].url;
+        }
         if (baseData.hasOwnProperty("seatmap")){
             var seatMap = baseData.seatmap.staticUrl;
-            console.log(seatMap);
         }
 
         var url = baseData.url;
-        console.log(url);
 
-        var priceRangeMin = baseData.priceRanges[0].min;
-        console.log(priceRangeMin);
-
-        var priceRangeMax = baseData.priceRanges[0].max;
-        console.log(priceRangeMax);
-
-        var startDate = baseData.dates.start.localDate;
-        console.log(startDate);
-
-        var localTime = baseData.dates.start.localTime;
-        console.log(localTime);
-
-        var eventName = baseData2.name;
-        console.log(eventName);
-
-        var eventCity = baseData2.city.name;
-        console.log(eventCity);
-
-        if (baseData2.hasOwnProperty("state")){
-            var eventState = baseData2.state.stateCode;
-            console.log(eventState);
+        if (baseData.hasOwnProperty("priceRanges")){
+            var priceRangeMin = baseData.priceRanges[0].min;
+            var priceRangeMax = baseData.priceRanges[0].max;
         }
+
+        var tempObject = {eventName, eventVenue, eventCity, eventState, startDate, localTime, eventImage, seatMap, url, priceRangeMin, priceRangeMax};
+
+        console.log(tempObject);
+
     }
+    //Empty the search window
     searchText.value = "";
 }
 
+
+init();
 searchBtnEl.addEventListener("click", getEvent);
+eventListEl.addEventListener("click", previousEvent);
