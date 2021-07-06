@@ -8,11 +8,12 @@
 }
 
 .uk-background-primary {
-    /* background-color: var(--TM-Black-Pearl); */
+    background-color: transparent;
 }
 
 h1, h2, h3, h4, h5 {
           color: var(--TM-Light);
+          font-family: Arial, Helvetica, sans-serif;
 }
 
 .uk-h1, h1{
@@ -21,7 +22,6 @@ h1, h2, h3, h4, h5 {
     color: var(--TM-Light);
     padding: 5px;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-
 }
 
 .uk-card {
@@ -34,16 +34,18 @@ h1, h2, h3, h4, h5 {
           box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
-#imageParentResult img {
+img {
+        width: 500px;
+        border-radius: 10px;
    
 }
 
-li {
-    display: block;
+/* li {
+    display: inline;
     
-}
+} */
 
-li a{
+li a {
     color: var(--TM-Light);
 }
 
@@ -56,9 +58,9 @@ li a:hover{
     display: none;
   }
 
-  .show {
+.show {
     display: block;
-  }
+ }
 
   .uk-button-default {
     background-color: var(--TM-Light);
@@ -77,3 +79,71 @@ li a:hover{
     
 }
 
+.saveBtn {
+        background-color: rgba(255, 255, 255, 0.521);
+        padding: 20px;
+        color: var(--TM-Black-Pearl);
+        font-size: medium;
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        border: none;
+        border-radius: 20px;
+        margin: 10px;
+
+}
+
+.saveBtn:hover {
+        background-color: var(--TM-Light);
+        color: var(--TM-Blue);
+}
+
+span {
+        display: block;  
+}
+
+.shell {
+    border: 3px solid white;
+    border-radius: 10px;
+    margin: 15px;
+    padding: 20px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    display: flex;
+}
+
+.shell div {
+        flex: 1;
+}
+
+.shell h3 {
+        color: var(--TM-Blue);    
+        
+}
+.shell p {
+        color: var(--TM-Black-Pearl);   
+        font-size: medium;
+        margin: 5px; 
+        padding: 5px;
+        flex: 1;
+}
+
+
+#contentParentResult0, #contentParentResult1, #contentParentResult2, #contentParentResult3, #contentParentResult4 {
+        border: 2px black solid;
+        background-color: var(--TM-Light);
+        color: var(--TM-Black-Pearl);
+        margin: 15px;  
+       min-width: 500px
+}
+
+
+.btn {
+        background-color: white;
+}
+
+.uk-link, a {
+    background-color: var(--TM-Blue);
+    padding: 20px;
+    color: white;
+
+    text-decoration: none;
+    cursor: pointer;
+}

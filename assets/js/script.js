@@ -73,15 +73,11 @@ function search(event) {
       });
 } 
 
-<<<<<<< HEAD
-searchBtnEl.addEventListener("click", getEvent);
-
-=======
 function playWithData(data) {
     //If a bad search was performed, no data will be returned.
     if (!data.hasOwnProperty("_embedded")) {
         searchText.value = "";
-        errorMessageEl.setAttribute("style", "display: block"); //Would like to use show class here and remove hide class
+        errorMessageEl.setAttribute("style", "display: block"); // Would like to use show class here and remove hide class // use .show and .hide
         return;
     }
 
@@ -242,4 +238,3 @@ function playWithData(data) {
 init();
 searchBtnEl.addEventListener("click", getEvent);
 eventListEl.addEventListener("click", previousEvent);
->>>>>>> 565af9af1c85643a2c6b9ef8241cc5ef5a76d4b9
