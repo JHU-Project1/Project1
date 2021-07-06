@@ -109,7 +109,7 @@ function playWithData(data) {
         eventListEl.appendChild(btn);
     }
 
-    for (var i=0; i < data._embedded.events.length; i++) {
+    for (var i=0; i < 4; i++) {
         if (document.getElementById("imageParentResult"+i)) {
             document.getElementById("imageParentResult"+i).innerHTML = "";
         };
