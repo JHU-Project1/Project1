@@ -109,14 +109,6 @@ function playWithData(data) {
         eventListEl.appendChild(btn);
     }
 
-    //resultParentEl.innerHTML = "";
-    for (var i=0; i < data._embedded.events.length; i++) {
-    //    var resultListEli = document.getElementById("result"+i);
-     //   resultListEli.children.innerHTML="";
-        //var eventImageEl = document.createElement("span");
-           // eventImageEl.textContent = "";
-    }
-
     for (var i=0; i < data._embedded.events.length; i++) {
         if (document.getElementById("imageParentResult"+i)) {
             document.getElementById("imageParentResult"+i).innerHTML = "";
@@ -210,7 +202,7 @@ function playWithData(data) {
 
                 var eventPriceRangeEl = document.createElement("span");
                 eventPriceRangeEl.setAttribute("id", "result"+i+"priceRange");
-                eventPriceRangeEl.textContent = "Min Cost: " + priceRangeMin + " Max Cost: " + priceRangeMax + " ";
+                eventPriceRangeEl.textContent = "Min Cost: $" + priceRangeMin + " Max Cost: $" + priceRangeMax + " ";
                 eventVenueEl.appendChild(eventPriceRangeEl);
             }
 
