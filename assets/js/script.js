@@ -191,10 +191,10 @@ function playWithData(data) {
             }
     
             var url = baseData.url;
-            var eventUrlEl = document.createElement("span");
+            var eventUrlEl = document.createElement("button");
             eventUrlEl.setAttribute("id", "result"+i+"Url");
-            eventUrlEl.innerHTML = "<a href=" + url + "> Buy Tickets </a></span>";
-            eventVenueEl.appendChild(eventUrlEl);
+            eventUrlEl.innerHTML = "<a href=" + url + "> Buy Tickets </a>";
+                contentParentEl.appendChild(eventUrlEl);
     
             if (baseData.hasOwnProperty("priceRanges")){
                 var priceRangeMin = baseData.priceRanges[0].min;
