@@ -12,8 +12,8 @@
 }
 
 h1, h2, h3, h4, h5 {
-          color: var(--TM-Black-Pearl);
-          font-family: Arial, Helvetica, sans-serif;
+          
+          font-family: 'Quicksand', sans-serif;
 }
 
 .uk-h1, h1{
@@ -37,17 +37,8 @@ h1, h2, h3, h4, h5 {
 img {
         width: 500px;
         border-radius: 10px;
-   
 }
 
-/* li {
-    display: inline;
-    
-} */
-
-li a {
-    color: var(--TM-Light);
-}
 
 li a:hover{
     color: var(--TM-Gray);
@@ -129,17 +120,30 @@ span {
         background-color: var(--TM-Light);
         color: var(--TM-Black-Pearl);
         margin: 15px;  
-       min-width: 500px
+       min-width: 500px;
+       padding: 10px;
+       border-radius: 10px;
 }
 
-.btn {
-        background-color: white;
+
+button a {
+        color: white;
+
 }
 
-.uk-link, a {
-    background-color: var(--TM-Blue);
-    padding: 20px;
-    color: white;
-    text-decoration: none;
-    cursor: pointer;
+button {
+        margin-bottom: 10px;
+        background-color: var(--TM-Blue);
+        color: var(--TM-Light);
+        padding: 10px;
+        border-radius: 10px;
+}
+
+button a:hover {
+        color: var(--TM-Blue);
+      
+        text-decoration: none;
+}
+button:hover {
+        background-color: var(--TM-Light);
 }
