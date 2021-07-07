@@ -12,7 +12,7 @@
 }
 
 h1, h2, h3, h4, h5 {
-          color: var(--TM-Light);
+          color: var(--TM-Black-Pearl);
           font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -96,9 +96,6 @@ li a:hover{
         color: var(--TM-Blue);
 }
 
-span {
-        display: block;  
-}
 
 .shell {
     border: 3px solid white;
