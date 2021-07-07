@@ -80,6 +80,9 @@ function playWithData(data) {
         errorMessageEl.setAttribute("style", "display: block"); //Would like to use show class here and remove hide class
         return;
     }
+    else {
+            errorMessageEl.setAttribute("style", "display: none");
+    }
 
     var recordID = Math.floor(Math.random() * 1000000);
     //Left as an object for potential future use.
@@ -129,6 +132,8 @@ function playWithData(data) {
         imageParentEl = document.getElementById("imageParentResult"+i);
         contentParentEl = document.getElementById("contentParentResult"+i);
         seatMapParentEl = document.getElementById("seatMapParentResult"+i);
+
+        resultEl = document.getElementById('result'+ i);
 
         var baseData = data._embedded.events[i];
         var baseData2 = baseData._embedded.venues[0];
@@ -191,9 +196,9 @@ function playWithData(data) {
             }
     
             var url = baseData.url;
-            var eventUrlEl = document.createElement("button");
+            var eventUrlEl = document.createElement("div");
             eventUrlEl.setAttribute("id", "result"+i+"Url");
-            eventUrlEl.innerHTML = "<a href=" + url + "> Buy Tickets </a>";
+                eventUrlEl.innerHTML = "<a href=" + url + "><button> Buy Tickets </button></a>";
                 contentParentEl.appendChild(eventUrlEl);
     
             if (baseData.hasOwnProperty("priceRanges")){
@@ -220,10 +225,17 @@ function playWithData(data) {
             console.log(tempObject);
     
         }
-        
+            
+            
     }
+    //Show Search Results Div
+        searchResultsParent.classList.remove("hide");
+
+        
+
     //Empty the search window
     searchText.value = "";
+    
 }
 
 
