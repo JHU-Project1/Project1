@@ -126,24 +126,25 @@ span {
 }
 
 
-button a {
-        color: white;
 
-}
 
 button {
         margin-bottom: 10px;
         background-color: var(--TM-Blue);
-        color: var(--TM-Light);
         padding: 10px;
+        color: var(--TM-Light);
         border-radius: 10px;
 }
 
-button a:hover {
-        color: var(--TM-Blue);
-      
-        text-decoration: none;
-}
+
 button:hover {
         background-color: var(--TM-Light);
+        color: var(--TM-Blue);
+}
+
+.errorMessage {
+        text-align: center;
+        background-color: red;
+        color: var(--TM-Light);
+        border-radius: 5px;
 }
