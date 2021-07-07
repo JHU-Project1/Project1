@@ -17,14 +17,14 @@ It is an application that allows a user to search and find upcoming events and g
 - For best and attractive css style, we used [UIkit](https://getuikit.com/docs/introduction) 
 - For the best fonts experince, it has buit up with the [Fontawesome](https://fontawesome.com)
 
-#### APIs list
+#### APIs list:
 * Wikipedia/Google
 * Ticketmaster
 * Stretch/Travel API
 
 The local storage is used here to store previous searched events up to three. If any non-related name is searched, it will pop up a alert box. For the conveninet, and clear look, we have made it simple and colorful with appripriate css style and google fonts. 
 
-## Demo clips
+## Demo clip
 
 ## Screenshots:
 Before searched any events.
