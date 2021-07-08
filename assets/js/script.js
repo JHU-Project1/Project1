@@ -122,6 +122,9 @@ function playWithData(data) {
         if (document.getElementById("seatMapParentResult"+i)) {
             document.getElementById("seatMapParentResult"+i).innerHTML = "";
         };
+        if (document.getElementById("brewRLParentResult"+i)) {
+            document.getElementById("brewRLParentResult"+i).innerHTML = "";
+        };
     }
 
     //Loop through our events and pull out useful content for display.  Display it to the screen.
