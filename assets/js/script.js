@@ -130,6 +130,7 @@ function playWithData(data) {
         //resultListEli = document.getElementById("result"+i);
         imageParentEl = document.getElementById("imageParentResult"+i);
         contentParentEl = document.getElementById("contentParentResult"+i);
+        brewRLParentEl = document.getElementById("brewRLParentResult"+i);
         seatMapParentEl = document.getElementById("seatMapParentResult"+i);
 
         resultEl = document.getElementById('result'+ i);
@@ -262,17 +263,18 @@ function playWithData(data) {
                     //var bURL = "<a href=" + url + "><button> Buy Tickets </button></a>";
                     //Simply generate links and info about the closest 3 breweries and put on screen.
                     
-                    var brewRLEl = document.createElement("div");
-                    eventVenueEl.appendChild(brewRLEl);
+                    //var brewRLEl = document.createElement("div");
+                    //contentParentEl.appendChild(brewRLEl);
                     var brewRLChild = [];
                     for (var i=0; i < 3; i++) {
                         
                         brewRLChild.push("<a href=" + brew[i].website_url + "><button>" + brew[i].name + "</button></a>");
                     }
                     var brewRLChildEl = document.createElement("div");
+                    brewRLChildEl.setAttribute("id", "result"+i+"brewRL");
                     brewRLChildEl.innerHTML = brewRLChild[0] + brewRLChild[1] + brewRLChild[2];
                     console.log(brewRLChildEl);
-                    brewRLEl.appendChild(brewRLChildEl);
+                    brewRLParentEl.appendChild(brewRLChildEl);
                     
                 });
             }
