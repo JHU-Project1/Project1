@@ -264,13 +264,13 @@ function playWithData(data) {
                     
                     var brewRLEl = document.createElement("div");
                     eventVenueEl.appendChild(brewRLEl);
-                    var brewRLChildEl = [];
+                    var brewRLChild = [];
                     for (var i=0; i < 3; i++) {
                         
-                        brewRLChildEl.push("<a href=" + brew[i].website_url + "><button>" + brew[i].name + "</button></a>");
+                        brewRLChild.push("<a href=" + brew[i].website_url + "><button>" + brew[i].name + "</button></a>");
                     }
                     var brewRLChildEl = document.createElement("div");
-                    brewRLChildEl.innerHTML = brewRLChildEl[0] + brewRLChildEl[1] + brewRLChildEl[2];
+                    brewRLChildEl.innerHTML = brewRLChild[0] + brewRLChild[1] + brewRLChild[2];
                     console.log(brewRLChildEl);
                     brewRLEl.appendChild(brewRLChildEl);
                     
