@@ -128,10 +128,10 @@ function playWithData(data) {
     for (var i=0; i < data._embedded.events.length; i++) {
 
         //resultListEli = document.getElementById("result"+i);
-        imageParentEl = document.getElementById("imageParentResult"+i);
-        contentParentEl = document.getElementById("contentParentResult"+i);
-        brewRLParentEl = document.getElementById("brewRLParentResult"+i);
-        seatMapParentEl = document.getElementById("seatMapParentResult"+i);
+        let imageParentEl = document.getElementById("imageParentResult"+i);
+        let contentParentEl = document.getElementById("contentParentResult"+i);
+        let brewRLParentEl = document.getElementById("brewRLParentResult"+i);
+        let seatMapParentEl = document.getElementById("seatMapParentResult"+i);
 
         resultEl = document.getElementById('result'+ i);
 
@@ -270,11 +270,11 @@ function playWithData(data) {
                         
                         brewRLChild.push("<a href=" + brew[i].website_url + "><button>" + brew[i].name + "</button></a>");
                     }
-                    var brewRLChildEl = document.createElement("div");
-                    brewRLChildEl.setAttribute("id", "result"+i+"brewRL");
-                    brewRLChildEl.innerHTML = brewRLChild[0] + brewRLChild[1] + brewRLChild[2];
-                    console.log(brewRLChildEl);
-                    brewRLParentEl.appendChild(brewRLChildEl);
+                    //var brewRLChildEl = document.createElement("div");
+                    //brewRLChildEl.setAttribute("id", "result"+i+"brewRL");
+                    brewRLParentEl.innerHTML = brewRLChild[0] + brewRLChild[1] + brewRLChild[2];
+                    console.log(brewRLParentEl);
+                    //brewRLParentEl.appendChild(brewRLChildEl);
                     
                 });
             }
