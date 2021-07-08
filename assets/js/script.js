@@ -5,7 +5,6 @@ var eventListEl = document.getElementById("eventList");
 
 var resultParentEl = document.getElementById("searchResultsParent");
 
-
 var baseApiUrl = "https://app.ticketmaster.com/";
 var base2ApiUrl = "discovery/v2/events.json?";
 var apiKey = "&apikey=SPbppXACrSXrFuZja5OQe7e47oQVPVkO";
@@ -74,10 +73,11 @@ function search(event) {
 } 
 
 function playWithData(data) {
+
     //If a bad search was performed, no data will be returned.
     if (!data.hasOwnProperty("_embedded")) {
         searchText.value = "";
-        errorMessageEl.setAttribute("style", "display: block"); //Would like to use show class here and remove hide class
+        errorMessageEl.setAttribute("style", "display: block");
         return;
     }
     else {
@@ -122,7 +122,6 @@ function playWithData(data) {
         if (document.getElementById("seatMapParentResult"+i)) {
             document.getElementById("seatMapParentResult"+i).innerHTML = "";
         };
-    
     }
 
     //Loop through our events and pull out useful content for display.  Display it to the screen.
@@ -136,14 +135,16 @@ function playWithData(data) {
         resultEl = document.getElementById('result'+ i);
 
         var baseData = data._embedded.events[i];
-        var baseData2 = baseData._embedded.venues[0];
-        
-        var eventVenue = baseData2.name;
+        var eventTitle = baseData.name;
+
 
         //If a venue exists then post results on screen for the event (could have 0-5 results)
-        if (eventVenue) {
+        if (eventTitle) {
             //Add a statement here to unhide resultListEli (this should then only display content for 0-5 results returned)
-            
+            if (baseData.hasOwnProperty("_embedded")){
+                var baseData2 = baseData._embedded.venues[0];
+                
+            }
 
             if (baseData.hasOwnProperty("images")){
                 var eventImage = baseData.images[0].url;
@@ -154,40 +155,64 @@ function playWithData(data) {
                 imageParentEl.appendChild(eventImageEl);
             }
 
-            var eventTitle = baseData.name;
+            //var eventTitle = baseData.name;
             var eventTitleEl = document.createElement("h3");
             eventTitleEl.setAttribute("id", "result"+i+"eventTitle");
             eventTitleEl.textContent = "Event: " + eventTitle + " ";
             contentParentEl.appendChild(eventTitleEl);
 
-
             var eventVenueEl = document.createElement("p");
-            eventVenueEl.setAttribute("id", "result"+i+"Venue");
-            eventVenueEl.textContent = "Venue: " + eventVenue + " ";
-            contentParentEl.appendChild(eventVenueEl);
-    
-            if (baseData2.hasOwnProperty("city")){
-                var eventCity = baseData2.city.name;
+            if (baseData.hasOwnProperty("_embedded")){
+                if (baseData2.hasOwnProperty("name")){
+                    var eventVenue = baseData2.name;
+                    eventVenueEl.setAttribute("id", "result"+i+"Venue");
+                    eventVenueEl.textContent = "Venue: " + eventVenue + " ";
+                    contentParentEl.appendChild(eventVenueEl);
+                }
+                if (baseData2.hasOwnProperty("city")){
+                    var eventCity = baseData2.city.name;
 
-                var eventCityEl = document.createElement("span");
-                eventCityEl.setAttribute("id", "result"+i+"City");
-                eventCityEl.textContent = "Location: " + eventCity + ", ";
-                eventVenueEl.appendChild(eventCityEl);
-            }
-            if (baseData2.hasOwnProperty("state")){
-                var eventState = baseData2.state.stateCode;
+                    var eventCityEl = document.createElement("span");
+                    eventCityEl.setAttribute("id", "result"+i+"City");
+                    eventCityEl.textContent = "Location: " + eventCity + ", ";
+                    eventVenueEl.appendChild(eventCityEl);
+                }
+                if (baseData2.hasOwnProperty("state")){
+                    var eventState = baseData2.state.stateCode;
 
-                var eventStateEl = document.createElement("span");
-                eventStateEl.setAttribute("id", "result"+i+"State");
-                eventStateEl.textContent = eventState + " ";
-                eventVenueEl.appendChild(eventStateEl);
+                    //var eventStateEl = document.createElement("span");
+                    //eventStateEl.setAttribute("id", "result"+i+"State");
+                    //eventStateEl.textContent = eventState + " ";
+                    //eventVenueEl.appendChild(eventStateEl);
+
+                    eventCityEl.textContent = "Location: " + eventCity + ", " + eventState + " ";
+                    eventVenueEl.appendChild(eventCityEl);
+                }
+                if (baseData2.hasOwnProperty("location")){
+                    //Get lat/lon
+                    var eventLat = baseData2.location.latitude;
+                    var eventLon = baseData2.location.longitude;
+                    var brewRL = "https://api.openbrewerydb.org/breweries?per_page=3&page=1&by_dist="+eventLat+","+eventLon;
+                }            
             }
     
             if (baseData.dates.hasOwnProperty("start")){
-                var startDate = baseData.dates.start.localDate;
+                if (baseData.dates.start.hasOwnProperty("localDate")){
+                    var startDate = baseData.dates.start.localDate;
+                    startDate = moment(startDate, "YYYY-MM-DD").format("MM/DD/YYYY");
+                } else {
+                    localDate = "Date Not specified";
+                }
+                
+                if (baseData.dates.start.hasOwnProperty("localTime")){
                 var localTime = baseData.dates.start.localTime;
-                startDate = moment(startDate, "YYYY-MM-DD").format("MM/DD/YYYY");
                 localTime = moment(localTime, "HH-mm-ss").format("h:mm A");
+                } else {
+                    localTime = "Time Not specified";
+                }
+                
+                console.log(startDate);
+                console.log(localTime);
 
                 var eventStartDateEl = document.createElement("span");
                 eventStartDateEl.setAttribute("id", "result"+i+"startDate");
@@ -219,26 +244,77 @@ function playWithData(data) {
                 seatMapEl.setAttribute("id", "result"+i+"seatMap");
                 seatMapParentEl.appendChild(seatMapEl);
             }
+
+ 
+
+            //This is new.  I also set an event listener
+            //var brewButtonEl = document.createElement("div");
+            //brewButtonEl.innerHTML = "<a href=" + brewRLs[i] + "><button> Map 3 Closest Breweries </button></a>";
+            if (brewRL) {
+                fetch(brewRL, {
     
-            var tempObject = {eventName, eventVenue, eventCity, eventState, startDate, localTime, eventImage, seatMap, url, priceRangeMin, priceRangeMax};
+                })
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (brew) {
+                    console.log(brew);
+                    //var bURL = "<a href=" + url + "><button> Buy Tickets </button></a>";
+                    //Simply generate links and info about the closest 3 breweries and put on screen.
+                    
+                    var brewRLEl = document.createElement("div");
+                    eventVenueEl.appendChild(brewRLEl);
+                    var brewRLChild = [];
+                    for (var i=0; i < 3; i++) {
+                        
+                        brewRLChild.push("<a href=" + brew[i].website_url + "><button>" + brew[i].name + "</button></a>");
+                    }
+                    var brewRLChildEl = document.createElement("div");
+                    brewRLChildEl.innerHTML = brewRLChild[0] + brewRLChild[1] + brewRLChild[2];
+                    console.log(brewRLChildEl);
+                    brewRLEl.appendChild(brewRLChildEl);
+                    
+                });
+            }
+
+        } 
+
+    
+            var tempObject = {eventName, eventVenue, eventCity, eventState, startDate, localTime, eventImage, seatMap, url, priceRangeMin, priceRangeMax, eventLat, eventLon, brewRL};
+            var location = {}
             console.log("Item: " + i)
             console.log(tempObject);
+
+            resultEl.classList.remove("hide");
+            
     
-        }
-            
-            
     }
+            
     //Show Search Results Div
         searchResultsParent.classList.remove("hide");
-
+        //Hide results that are not returned
+        for (var i=data._embedded.events.length; i < 5; i++) {
+            if (document.getElementById("result"+i)) {
+                var tempResult = document.getElementById("result"+i);
+                tempResult.classList.add("hide");
+            }
+        }
         
 
     //Empty the search window
     searchText.value = "";
-    
 }
 
+/*
+searchBrew (event) {
+    event.preventDefault();
+    eventName = event.target.textContent;
+}
+*/
 
 init();
 searchBtnEl.addEventListener("click", getEvent);
 eventListEl.addEventListener("click", previousEvent);
+//brewButtonEl.addEventListener("click", searchBrew);
+
+//https://image.maps.ls.hereapi.com/mia/1.6/mapview?apiKey=IPMppgJb9U3fbSMBVDxSyb0ul-nJMoLByP44T8FCA8c&poi=41.8499832, -87.6233063
