@@ -257,9 +257,23 @@ function playWithData(data) {
                 .then(function (response) {
                     return response.json();
                 })
-                .then(function (data) {
-                    console.log(data);
+                .then(function (brew) {
+                    console.log(brew);
+                    //var bURL = "<a href=" + url + "><button> Buy Tickets </button></a>";
                     //Simply generate links and info about the closest 3 breweries and put on screen.
+                    
+                    var brewRLEl = document.createElement("div");
+                    eventVenueEl.appendChild(brewRLEl);
+                    var brewRLChildEl = [];
+                    for (var i=0; i < 3; i++) {
+                        
+                        brewRLChildEl.push("<a href=" + brew[i].website_url + "><button>" + brew[i].name + "</button></a>");
+                    }
+                    var brewRLChildEl = document.createElement("div");
+                    brewRLChildEl.innerHTML = brewRLChildEl[0] + brewRLChildEl[1] + brewRLChildEl[2];
+                    console.log(brewRLChildEl);
+                    brewRLEl.appendChild(brewRLChildEl);
+                    
                 });
             }
 
