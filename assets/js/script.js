@@ -5,7 +5,6 @@ var eventListEl = document.getElementById("eventList");
 
 var resultParentEl = document.getElementById("searchResultsParent");
 
-
 var baseApiUrl = "https://app.ticketmaster.com/";
 var base2ApiUrl = "discovery/v2/events.json?";
 var apiKey = "&apikey=SPbppXACrSXrFuZja5OQe7e47oQVPVkO";
@@ -74,6 +73,7 @@ function search(event) {
 } 
 
 function playWithData(data) {
+
     //If a bad search was performed, no data will be returned.
     if (!data.hasOwnProperty("_embedded")) {
         searchText.value = "";
@@ -122,7 +122,6 @@ function playWithData(data) {
         if (document.getElementById("seatMapParentResult"+i)) {
             document.getElementById("seatMapParentResult"+i).innerHTML = "";
         };
-    
     }
 
     //Loop through our events and pull out useful content for display.  Display it to the screen.
@@ -219,26 +218,67 @@ function playWithData(data) {
                 seatMapEl.setAttribute("id", "result"+i+"seatMap");
                 seatMapParentEl.appendChild(seatMapEl);
             }
+
+            //Get lat/lon
+            var eventLat = baseData2.location.latitude;
+            var eventLon = baseData2.location.longitude;
+
+            var brewRL = "https://api.openbrewerydb.org/breweries?per_page=3&page=1&by_dist="+eventLat+","+eventLon;
+
+            //This is new.  I also set an event listener
+            //var brewButtonEl = document.createElement("div");
+            //brewButtonEl.innerHTML = "<a href=" + brewRLs[i] + "><button> Map 3 Closest Breweries </button></a>";
+
+                fetch(brewRL, {
     
-            var tempObject = {eventName, eventVenue, eventCity, eventState, startDate, localTime, eventImage, seatMap, url, priceRangeMin, priceRangeMax};
+                })
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (data) {
+                    console.log(data);
+                    //Simply generate links and info about the closest 3 breweries and put on screen.
+                });
+
+
+        } 
+
+    
+            var tempObject = {eventName, eventVenue, eventCity, eventState, startDate, localTime, eventImage, seatMap, url, priceRangeMin, priceRangeMax, eventLat, eventLon, brewRL};
+            var location = {}
             console.log("Item: " + i)
             console.log(tempObject);
+
+            resultEl.classList.remove("hide");
+            
     
-        }
-            
-            
     }
+            
     //Show Search Results Div
         searchResultsParent.classList.remove("hide");
-
+        //Hide results that are not returned
+        for (var i=data._embedded.events.length; i < 5; i++) {
+            if (document.getElementById("result"+i)) {
+                var tempResult = document.getElementById("result"+i);
+                tempResult.classList.add("hide");
+            }
+        }
         
 
     //Empty the search window
     searchText.value = "";
-    
 }
 
+/*
+searchBrew (event) {
+    event.preventDefault();
+    eventName = event.target.textContent;
+}
+*/
 
 init();
 searchBtnEl.addEventListener("click", getEvent);
 eventListEl.addEventListener("click", previousEvent);
+//brewButtonEl.addEventListener("click", searchBrew);
+
+//https://image.maps.ls.hereapi.com/mia/1.6/mapview?apiKey=IPMppgJb9U3fbSMBVDxSyb0ul-nJMoLByP44T8FCA8c&poi=41.8499832, -87.6233063
