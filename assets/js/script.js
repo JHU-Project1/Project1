@@ -123,6 +123,10 @@ function playWithData(data) {
         if (document.getElementById("brewRLParentResult"+i)) {
             document.getElementById("brewRLParentResult"+i).innerHTML = "";
         };
+        if (document.getElementById("brewMapParentResult"+i)) {
+            document.getElementById("brewMapParentResult"+i).innerHTML = "";
+        };
+
     }
 
     //Loop through our events and pull out useful content for display.  Display it to the screen.
