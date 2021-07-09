@@ -97,7 +97,6 @@ function playWithData(data) {
         //Only remember the last 3 searches when page refreshed and remove old buttons
         if (savedTicketInfo.length > 2) {
             var removeButtonID = savedTicketInfo[0].recordID;
-            console.log(removeButtonID);
             document.getElementById(removeButtonID).remove();
             savedTicketInfo.shift();
         }
@@ -106,7 +105,6 @@ function playWithData(data) {
         localStorage.setItem("savedTicketInfo", JSON.stringify(savedTicketInfo));
         var btn = document.createElement("button");
         btn.textContent = newEventInfo.eventName;
-        console.log(newEventInfo.recordID);
         btn.setAttribute("id", newEventInfo.recordID);
         btn.classList.add("saveBtn", "event"); //Add whatever classes you want for style
         eventListEl.appendChild(btn);
@@ -135,6 +133,7 @@ function playWithData(data) {
         let contentParentEl = document.getElementById("contentParentResult"+i);
         let brewRLParentEl = document.getElementById("brewRLParentResult"+i);
         let seatMapParentEl = document.getElementById("seatMapParentResult"+i);
+        let brewMapParentEl = document.getElementById("brewMapParentResult"+i);
 
         resultEl = document.getElementById('result'+ i);
 
@@ -214,9 +213,6 @@ function playWithData(data) {
                 } else {
                     localTime = "Time Not specified";
                 }
-                
-                console.log(startDate);
-                console.log(localTime);
 
                 var eventStartDateEl = document.createElement("span");
                 eventStartDateEl.setAttribute("id", "result"+i+"startDate");
@@ -269,16 +265,29 @@ function playWithData(data) {
                     //var brewRLEl = document.createElement("div");
                     //contentParentEl.appendChild(brewRLEl);
                     var brewRLChild = [];
+                    var latLon = [];
                     for (var i=0; i < 3; i++) {
                         
                         brewRLChild.push("<a href=" + brew[i].website_url + "><button>" + brew[i].name + "</button></a>");
+                        latLon.push(brew[i].latitude + "," + brew[i].longitude + "|");
                     }
                     //var brewRLChildEl = document.createElement("div");
                     //brewRLChildEl.setAttribute("id", "result"+i+"brewRL");
                     brewRLParentEl.innerHTML = brewRLChild[0] + brewRLChild[1] + brewRLChild[2];
-                    console.log(brewRLParentEl);
+ 
+                    var latLonJoined = latLon.join("");
+
+                    var mapURL = "https://maps.googleapis.com/maps/api/staticmap?&size=400x400&markers=color:blue|label:B|" + latLonJoined + "&key=AIzaSyAIWx_G_5naZts10KidHOhvxj9mzJHP_Jw";
+                    
+                    var brewMapEl = document.createElement("img");
+                    brewMapEl.src = mapURL;
+                    brewMapEl.setAttribute("id", "result"+i+"brewMap");
+                    brewMapParentEl.appendChild(brewMapEl);
+
                     //brewRLParentEl.appendChild(brewRLChildEl);
                     
+                    
+                    //https://maps.googleapis.com/maps/api/staticmap?&size=400x400&markers=color:green|label:1|41.8499832,-87.6233063&key=AIzaSyAIWx_G_5naZts10KidHOhvxj9mzJHP_Jw
                 });
             }
 
@@ -286,7 +295,6 @@ function playWithData(data) {
 
     
             var tempObject = {eventName, eventVenue, eventCity, eventState, startDate, localTime, eventImage, seatMap, url, priceRangeMin, priceRangeMax, eventLat, eventLon, brewRL};
-            var location = {}
             console.log("Item: " + i)
             console.log(tempObject);
 
