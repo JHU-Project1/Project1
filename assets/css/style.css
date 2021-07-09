@@ -35,7 +35,7 @@ h1, h2, h3, h4, h5 {
 }
 
 img {
-        width: 500px;
+        /* width: 500px; */
         border-radius: 10px;
 }
 
@@ -88,12 +88,12 @@ span {
     margin: 15px;
     padding: 20px;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-    display: flex;
+    /* display: flex; */
 }
 
-.shell div {
+/* .shell div {
         flex: 1;
-}
+} */
 
 .shell h3 {
         color: var(--TM-Blue);    
@@ -104,7 +104,7 @@ span {
         font-size: medium;
         margin: 5px; 
         padding: 5px;
-        flex: 1;
+        /* flex: 1; */
 }
 
 #contentParentResult0, #contentParentResult1, #contentParentResult2, #contentParentResult3, #contentParentResult4 {
@@ -117,11 +117,13 @@ span {
        border-radius: 10px;
 }
 
-
+#imageParentResult0, #imageParentResult1, #imageParentResult2, #imageParentResult3, #imageParentResult4, #seatMapParentResult0, #seatMapParentResult1, #seatMapParentResult2, #seatMapParentResult3, #seatMapParentResult4 {
+        width: 500px;
+}
 
 
 button {
-        margin-bottom: 10px;
+        margin: 10px;
         background-color: var(--TM-Blue);
         padding: 10px;
         color: var(--TM-Light);
@@ -147,4 +149,8 @@ button:hover {
     
 .show {
         display: block;
+}
+
+.beer {
+        max-width: 50px;
 }
