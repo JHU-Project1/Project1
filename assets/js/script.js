@@ -287,7 +287,7 @@ function playWithData(data) {
  
                     var latLonJoined = latLon.join("");
 
-                    var mapURL = "https://maps.googleapis.com/maps/api/staticmap?&size=400x400&markers=color:blue|label:B|" + latLonJoined + "&key=AIzaSyAIWx_G_5naZts10KidHOhvxj9mzJHP_Jw";
+                    var mapURL = "https://maps.googleapis.com/maps/api/staticmap?&size=300x300&markers=color:blue|label:B|" + latLonJoined + "&key=AIzaSyAIWx_G_5naZts10KidHOhvxj9mzJHP_Jw";
                     
                     var brewMapEl = document.createElement("img");
                     //var brewMapBtn = document.createElement("button") //Create Show Brew Map Button
