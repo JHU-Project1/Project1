@@ -18,6 +18,10 @@ var keyword;
 
 //Get content from local storage for use
 function init() {
+    var eventForm = document.querySelector("#myForm");
+    console.log(eventForm);
+    eventForm.addEventListener("submit", searchEvent);
+    //getSearchFromURL();
 
     if (localStorage.getItem("savedTicketInfo")) {
         savedTicketInfo = JSON.parse(localStorage.getItem("savedTicketInfo"));
@@ -53,7 +57,7 @@ function previousEvent(event) {
 
 
 //Take in event and get API response
-function search(event) {
+function search() {
     keyword = "keyword=" + eventName;
     //Query the API for an event based upon keyword and pagesize
     var specURL = baseApiUrl + base2ApiUrl + keyword + pageSize + apiKey;
@@ -230,6 +234,7 @@ function playWithData(data) {
             var eventUrlEl = document.createElement("div");
             eventUrlEl.setAttribute("id", "result"+i+"Url");
                 eventUrlEl.innerHTML = "<a href=" + url + "><button> Buy Tickets </button></a>";
+                eventUrlEl.classList.add("newBtn");
                 contentParentEl.appendChild(eventUrlEl);
     
             if (baseData.hasOwnProperty("priceRanges")){
@@ -329,30 +334,52 @@ function playWithData(data) {
     searchText.value = "";
 }
 
-/*
-searchBrew (event) {
-    event.preventDefault();
-    eventName = event.target.textContent;
-}
-*/
+function getSearchFromURL() {
+    // get search params
+    var searchQuery = new URLSearchParams(window.location.search)
+    // check if an event is in the URL
+    if (searchQuery.has("event")) {
+        console.log("search query has an event");
+      // get event name and show it on screen
+      eventName = searchQuery.get("event")
+      //showEventNameOnScreen(eventName)
+      search()
+    } else {
+        console.log("I'm here");
 
-/*
-function showBrewMap(event) {
-    console.log("I'm here");
-    var check = event.target;
-    console.log(check);
-    //brewMapEl.classList.remove("hide");
-}
-*/
+      //showEventNameOnScreen("")
+    }
+  }
+
+  function searchEvent(event) {
+    console.log("In searchEvent function");
+    event.preventDefault();
+    // get value of input
+    var eventNameTemp = searchTxtEl.value
+    // save to url
+    var pageUrl = '?event=' + window.encodeURIComponent(eventNameTemp);
+    window.history.pushState('', '', pageUrl);
+    // update screen
+    //showEventNameOnScreen(eventName);  
+  }
+  //function showEventNameOnScreen(eventName) {
+  //  document.querySelector("#searchedEvent").textContent = eventName
+  //}
+  // listen for state on back
+  window.addEventListener("popstate", function (event) {
+    event.preventDefault();
+    getSearchFromURL()
+  });
 
 init();
-
 searchBtnEl.addEventListener("click", getEvent);
+
 searchTxtEl.addEventListener("keydown", function(event) {
     if (event.key === "Enter") {
         event.preventDefault();
         searchBtnEl.click();
     }
 });
+
 eventListEl.addEventListener("click", previousEvent);
 //brewMapParentEl.addEventListener("click", showBrewMap);
