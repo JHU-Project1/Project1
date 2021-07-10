@@ -18,14 +18,11 @@ var keyword;
 //Get content from local storage for use
 function init() {
 
-    if (localStorage.getItem("savedTicketInfo") === null) {
-        return;
-    } else {
+    if (localStorage.getItem("savedTicketInfo")) {
         savedTicketInfo = JSON.parse(localStorage.getItem("savedTicketInfo"));
         makeButtonsFromSaved(savedTicketInfo)
         return savedTicketInfo;
     }
-
 }
 
 //Turn saved info into event buttons
