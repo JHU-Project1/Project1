@@ -288,17 +288,24 @@ function playWithData(data) {
                     var mapURL = "https://maps.googleapis.com/maps/api/staticmap?&size=400x400&markers=color:blue|label:B|" + latLonJoined + "&key=AIzaSyAIWx_G_5naZts10KidHOhvxj9mzJHP_Jw";
                     
                     var brewMapEl = document.createElement("img");
+                    var brewMapBtn = document.createElement("button") //Create Show Brew Map Button
+                    brewMapBtn.textContent = "Show Brew Map" //text for button
+                    brewMapBtn.setAttribute("id", "result"+i+"brewBtn")//set ID for button
+                    brewMapBtn.setAttribute("class", "brewBtn")
+                    
                     brewMapEl.src = mapURL;
                     brewMapEl.setAttribute("id", "result"+i+"brewMap");
+                    brewMapEl.setAttribute("class", "hide")// added hide class to map - will be removed on click
+                    
+                    brewMapParentEl.appendChild(brewMapBtn);
                     brewMapParentEl.appendChild(brewMapEl);
+                    
 
                     //brewRLParentEl.appendChild(brewRLChildEl);
-                    
                     
                     //https://maps.googleapis.com/maps/api/staticmap?&size=400x400&markers=color:green|label:1|41.8499832,-87.6233063&key=AIzaSyAIWx_G_5naZts10KidHOhvxj9mzJHP_Jw
                 });
             }
-
         } 
 
     
@@ -333,7 +340,15 @@ searchBrew (event) {
 }
 */
 
+function showBrewMap() {
+       // need to grab the map and remove hide class
+       //button id = result[i]brewBtn
+
+       console.log("showBrewMap")
+}
+
 init();
+
 searchBtnEl.addEventListener("click", getEvent);
 eventListEl.addEventListener("click", previousEvent);
 //brewButtonEl.addEventListener("click", searchBrew);
