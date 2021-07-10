@@ -20,7 +20,7 @@ h1, h2, h3, h4, h5 {
     background-color: var(--TM-Blue);
     color: var(--TM-Light);
     padding: 5px;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    /* box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px; */
 }
 
 .uk-card {
@@ -64,15 +64,16 @@ li a:hover{
         padding: 20px;
         color: var(--TM-Black-Pearl);
         font-size: medium;
-        box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        /* box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px; */
         border: none;
         border-radius: 10px;
         margin: 5px;
+        background-color: var(--TM-Light);
 
 }
 
 .saveBtn:hover {
-        background-color: var(--TM-Light);
+        
         color: var(--TM-Blue);
 }
 
@@ -83,7 +84,8 @@ span {
     border-radius: 10px;
     margin: 15px;
     padding: 20px;
-    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    border-bottom: 5px var(--TM-Light) solid;
+    /* box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px; */
     /* display: flex; */
 }
 
@@ -126,6 +128,8 @@ button {
         color: var(--TM-Light);
         border-radius: 10px;
         border: none;
+        display: inline-block;
+        
 }
 
 
@@ -173,4 +177,15 @@ button:hover {
         border: 2px solid var(--TM-Gray);
         color: var(--TM-Gray);
         
+}
+
+.footer {
+        text-align: center;
+        background-color: var(--TM-Blue);
+        color: var(--TM-Light);
+        padding: 10px;
+}
+
+.footer h3{
+        color: var(--TM-Light);
 }
