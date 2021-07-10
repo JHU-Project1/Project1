@@ -279,7 +279,7 @@ function playWithData(data) {
                             //Should we add a class to make the button
                             brewRLChild.push("<button class='disabled' disabled>" + brew[i].name + "</button>");
                         } else {
-                            brewRLChild.push("<a href=" + brew[i].website_url + "><button>" + brew[i].name + "</button></a>");
+                            brewRLChild.push("<a href=" + brew[i].website_url + " class='newBtn'>" + brew[i].name + "</a>");
                         }
                         latLon.push(brew[i].latitude + "," + brew[i].longitude + "|");
                     }
