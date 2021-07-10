@@ -277,7 +277,7 @@ function playWithData(data) {
                     for (var i=0; i < 3; i++) {
                         if (brew[i].website_url === null) {
                             //Should we add a class to make the button
-                            brewRLChild.push("<a href=#contentParentResult><button class='disabled'>" + brew[i].name + "</button></a>");
+                            brewRLChild.push("<button class='disabled' disabled>" + brew[i].name + "</button>");
                         } else {
                             brewRLChild.push("<a href=" + brew[i].website_url + "><button>" + brew[i].name + "</button></a>");
                         }
