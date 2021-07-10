@@ -1,4 +1,5 @@
 var searchBtnEl = document.getElementById("searchBtn");
+var searchTxtEl = document.getElementById("searchText");
 var errorMessageEl = document.querySelector(".errorMessage");
 var showDataEl = document.querySelector(".showData");
 var eventListEl = document.getElementById("eventList");
@@ -18,14 +19,11 @@ var keyword;
 //Get content from local storage for use
 function init() {
 
-    if (localStorage.getItem("savedTicketInfo") === null) {
-        return;
-    } else {
+    if (localStorage.getItem("savedTicketInfo")) {
         savedTicketInfo = JSON.parse(localStorage.getItem("savedTicketInfo"));
         makeButtonsFromSaved(savedTicketInfo)
         return savedTicketInfo;
     }
-
 }
 
 //Turn saved info into event buttons
@@ -277,7 +275,7 @@ function playWithData(data) {
                     for (var i=0; i < 3; i++) {
                         if (brew[i].website_url === null) {
                             //Should we add a class to make the button
-                            brewRLChild.push("<button class='disabled' disabled>" + brew[i].name + "</button><br>");
+                            brewRLChild.push("<button class='disabled' disabled>" + brew[i].name + " (no website)</button><br>");
                         } else {
                             brewRLChild.push("<a href=" + brew[i].website_url + " class='newBtn'>" + brew[i].name + "</a><br>");
                         }
@@ -350,5 +348,11 @@ function showBrewMap(event) {
 init();
 
 searchBtnEl.addEventListener("click", getEvent);
+searchTxtEl.addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        searchBtnEl.click();
+    }
+});
 eventListEl.addEventListener("click", previousEvent);
 //brewMapParentEl.addEventListener("click", showBrewMap);
