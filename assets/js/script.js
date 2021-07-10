@@ -275,7 +275,7 @@ function playWithData(data) {
                     for (var i=0; i < 3; i++) {
                         if (brew[i].website_url === null) {
                             //Should we add a class to make the button
-                            brewRLChild.push("<button class='disabled' disabled>" + brew[i].name + "</button><br>");
+                            brewRLChild.push("<button class='disabled' disabled>" + brew[i].name + " (no website)</button><br>");
                         } else {
                             brewRLChild.push("<a href=" + brew[i].website_url + " class='newBtn'>" + brew[i].name + "</a><br>");
                         }
@@ -348,7 +348,7 @@ function showBrewMap(event) {
 init();
 
 searchBtnEl.addEventListener("click", getEvent);
-searchTxtEl.addEventListener("keyup", function(event) {
+searchTxtEl.addEventListener("keydown", function(event) {
     if (event.key === "Enter") {
         event.preventDefault();
         searchBtnEl.click();
