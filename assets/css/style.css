@@ -12,7 +12,6 @@
 }
 
 h1, h2, h3, h4, h5 {
-          
           font-family: 'Quicksand', sans-serif;
 }
 
@@ -25,10 +24,8 @@ h1, h2, h3, h4, h5 {
 }
 
 .uk-card {
-    
           background-color: var(--TM-Blue);
           color: var(--TM-Light);
-          
           border-color: var(--TM-Light);
           border-radius: 10px;
           box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
@@ -47,8 +44,9 @@ li a:hover{
 
   .uk-button-default {
     background-color: var(--TM-Light);
-    margin-top: 5px;
+    margin-top: 15px;
     color: var(--TM-Black-Pearl);
+    border-radius: 5px;
     
 }
   .uk-button-default:hover {
@@ -58,7 +56,6 @@ li a:hover{
 }
   .uk-button-default:focus {
       background-color: rgb(218, 218, 218);
-   
     
 }
 
@@ -83,7 +80,6 @@ span {
         display: block;
 }
 .shell {
-    border: 3px solid white;
     border-radius: 10px;
     margin: 15px;
     padding: 20px;
@@ -108,17 +104,17 @@ span {
 }
 
 #contentParentResult0, #contentParentResult1, #contentParentResult2, #contentParentResult3, #contentParentResult4 {
-        border: 2px black solid;
-        background-color: var(--TM-Light);
+      
+        background-color: none;
         color: var(--TM-Black-Pearl);
-        margin: 15px;  
+        margin: 25px;  
        min-width: 500px;
        padding: 10px;
        border-radius: 10px;
 }
 
 #imageParentResult0, #imageParentResult1, #imageParentResult2, #imageParentResult3, #imageParentResult4, #seatMapParentResult0, #seatMapParentResult1, #seatMapParentResult2, #seatMapParentResult3, #seatMapParentResult4 {
-        width: 500px;
+        max-width: 350px;
 }
 
 
@@ -128,12 +124,15 @@ button {
         padding: 10px;
         color: var(--TM-Light);
         border-radius: 10px;
+        border: none;
 }
 
 
 button:hover {
         background-color: var(--TM-Light);
         color: var(--TM-Blue);
+        border: none;
+        border-radius: 5px;
 }
 
 .errorMessage {

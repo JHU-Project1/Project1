@@ -295,14 +295,13 @@ function playWithData(data) {
                     
                     brewMapParentEl.appendChild(brewMapBtn);
                     brewMapParentEl.appendChild(brewMapEl);
+                    
 
                     //brewRLParentEl.appendChild(brewRLChildEl);
-                    
                     
                     //https://maps.googleapis.com/maps/api/staticmap?&size=400x400&markers=color:green|label:1|41.8499832,-87.6233063&key=AIzaSyAIWx_G_5naZts10KidHOhvxj9mzJHP_Jw
                 });
             }
-
         } 
 
     
