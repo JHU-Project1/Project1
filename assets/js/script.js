@@ -279,8 +279,6 @@ function playWithData(data) {
                         }
                         latLon.push(brew[i].latitude + "," + brew[i].longitude + "|");
                     }
-                    //var brewRLChildEl = document.createElement("div");
-                    //brewRLChildEl.setAttribute("id", "result"+i+"brewRL");
                     brewRLParentEl.innerHTML = brewRLChild[0] + brewRLChild[1] + brewRLChild[2];
  
                     var latLonJoined = latLon.join("");
@@ -288,22 +286,19 @@ function playWithData(data) {
                     var mapURL = "https://maps.googleapis.com/maps/api/staticmap?&size=400x400&markers=color:blue|label:B|" + latLonJoined + "&key=AIzaSyAIWx_G_5naZts10KidHOhvxj9mzJHP_Jw";
                     
                     var brewMapEl = document.createElement("img");
-                    var brewMapBtn = document.createElement("button") //Create Show Brew Map Button
-                    brewMapBtn.textContent = "Show Brew Map" //text for button
-                    brewMapBtn.setAttribute("id", "result"+i+"brewBtn")//set ID for button
-                    brewMapBtn.setAttribute("class", "brewBtn")
+                    //var brewMapBtn = document.createElement("button") //Create Show Brew Map Button
+                    //brewMapBtn.textContent = "Show Brew Map" //text for button
+                    //brewMapBtn.setAttribute("id", "result"+i+"brewBtn")//set ID for button
+                    //brewMapBtn.setAttribute("class", "brewBtn")
                     
                     brewMapEl.src = mapURL;
                     brewMapEl.setAttribute("id", "result"+i+"brewMap");
-                    brewMapEl.setAttribute("class", "hide")// added hide class to map - will be removed on click
+                    //brewMapEl.setAttribute("class")// added hide class to map - will be removed on click
                     
-                    brewMapParentEl.appendChild(brewMapBtn);
+                    //brewMapParentEl.appendChild(brewMapBtn);
                     brewMapParentEl.appendChild(brewMapEl);
                     
-
-                    //brewRLParentEl.appendChild(brewRLChildEl);
-                    
-                    //https://maps.googleapis.com/maps/api/staticmap?&size=400x400&markers=color:green|label:1|41.8499832,-87.6233063&key=AIzaSyAIWx_G_5naZts10KidHOhvxj9mzJHP_Jw
+                    //brewMapParentEl.addEventListener("click", showBrewMap);
                 });
             }
         } 
@@ -314,7 +309,6 @@ function playWithData(data) {
             console.log(tempObject);
 
             resultEl.classList.remove("hide");
-            
     
     }
             
@@ -340,17 +334,17 @@ searchBrew (event) {
 }
 */
 
-function showBrewMap() {
-       // need to grab the map and remove hide class
-       //button id = result[i]brewBtn
-
-       console.log("showBrewMap")
+/*
+function showBrewMap(event) {
+    console.log("I'm here");
+    var check = event.target;
+    console.log(check);
+    //brewMapEl.classList.remove("hide");
 }
+*/
 
 init();
 
 searchBtnEl.addEventListener("click", getEvent);
 eventListEl.addEventListener("click", previousEvent);
-//brewButtonEl.addEventListener("click", searchBrew);
-
-//https://image.maps.ls.hereapi.com/mia/1.6/mapview?apiKey=IPMppgJb9U3fbSMBVDxSyb0ul-nJMoLByP44T8FCA8c&poi=41.8499832, -87.6233063
+//brewMapParentEl.addEventListener("click", showBrewMap);
