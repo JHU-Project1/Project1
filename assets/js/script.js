@@ -277,9 +277,9 @@ function playWithData(data) {
                     for (var i=0; i < 3; i++) {
                         if (brew[i].website_url === null) {
                             //Should we add a class to make the button
-                            brewRLChild.push("<button class='disabled' disabled>" + brew[i].name + "</button>");
+                            brewRLChild.push("<button class='disabled' disabled>" + brew[i].name + "</button><br>");
                         } else {
-                            brewRLChild.push("<a href=" + brew[i].website_url + " class='newBtn'>" + brew[i].name + "</a>");
+                            brewRLChild.push("<a href=" + brew[i].website_url + " class='newBtn'>" + brew[i].name + "</a><br>");
                         }
                         latLon.push(brew[i].latitude + "," + brew[i].longitude + "|");
                     }
