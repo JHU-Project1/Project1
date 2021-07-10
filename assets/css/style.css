@@ -85,6 +85,7 @@ span {
     margin: 15px;
     padding: 20px;
     border-bottom: 5px var(--TM-Light) solid;
+    align-items: center;
     /* box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px; */
     /* display: flex; */
 }
@@ -113,16 +114,18 @@ span {
        /* min-width: 500px; */
        padding: 10px;
        border-radius: 10px;
+       text-align: center;
 }
 
 #imageParentResult0, #imageParentResult1, #imageParentResult2, #imageParentResult3, #imageParentResult4, #seatMapParentResult0, #seatMapParentResult1, #seatMapParentResult2, #seatMapParentResult3, #seatMapParentResult4 {
         max-width: 350px;
+        align-items: center;
 }
 
 
 button, .newBtn {
         margin-top: 10px;
-        margin-right: 10px;
+        /* margin-right: 10px; */
         background-color: var(--TM-Blue);
         padding: 10px;
         color: var(--TM-Light);
@@ -130,6 +133,8 @@ button, .newBtn {
         border: none;
         display: inline-block;
         text-decoration: none;
+        width: 300px;
+        text-align: center;
 }
 
 
@@ -138,6 +143,9 @@ button:hover, .newBtn:hover {
         color: var(--TM-Blue);
         border-radius: 10px;
         border: none;
+       
+        /* width: 300px; */
+        text-align: center;
         text-decoration: none;
         
 }
@@ -171,12 +179,18 @@ button:hover, .newBtn:hover {
         background-color: white;
         border: 2px solid var(--TM-Gray);
         color: var(--TM-Gray);
+        width: 300px;
+        font-size: medium;
+        
     
 }
 .disabled:hover {
         background-color: white;
         border: 2px solid var(--TM-Gray);
         color: var(--TM-Gray);
+         width: 300px;
+         font-size: medium;
+         text-decoration: none;
         
 }
 
@@ -189,4 +203,9 @@ button:hover, .newBtn:hover {
 
 .footer h3{
         color: var(--TM-Light);
+}
+
+#searchResultsParent{
+        border-top: 3px solid var(--TM-Light);
+        margin: 10px;
 }
