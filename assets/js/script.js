@@ -1,4 +1,5 @@
 var searchBtnEl = document.getElementById("searchBtn");
+var searchTxtEl = document.getElementById("searchText");
 var errorMessageEl = document.querySelector(".errorMessage");
 var showDataEl = document.querySelector(".showData");
 var eventListEl = document.getElementById("eventList");
@@ -347,5 +348,11 @@ function showBrewMap(event) {
 init();
 
 searchBtnEl.addEventListener("click", getEvent);
+searchTxtEl.addEventListener("keyup", function(event) {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        searchBtnEl.click();
+    }
+});
 eventListEl.addEventListener("click", previousEvent);
 //brewMapParentEl.addEventListener("click", showBrewMap);
