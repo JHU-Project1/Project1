@@ -126,6 +126,9 @@ function playWithData(data) {
         if (document.getElementById("brewMapParentResult"+i)) {
             document.getElementById("brewMapParentResult"+i).innerHTML = "";
         };
+        //if (document.getElementById("beerParentResult"+i)) {
+        //    document.getElementById("beerParentResult"+i).innerHTML = "";
+        //};
 
     }
 
@@ -138,6 +141,7 @@ function playWithData(data) {
         let brewRLParentEl = document.getElementById("brewRLParentResult"+i);
         let seatMapParentEl = document.getElementById("seatMapParentResult"+i);
         let brewMapParentEl = document.getElementById("brewMapParentResult"+i);
+        //let beerParentEl = document.getElementById("beerParentResult"+i);
 
         resultEl = document.getElementById('result'+ i);
 
@@ -273,7 +277,7 @@ function playWithData(data) {
                     for (var i=0; i < 3; i++) {
                         if (brew[i].website_url === null) {
                             //Should we add a class to make the button
-                            brewRLChild.push("<a href=" + brew[i].website_url + "><button class='disabled'>" + brew[i].name + "</button></a>");
+                            brewRLChild.push("<a href=#contentParentResult><button class='disabled'>" + brew[i].name + "</button></a>");
                         } else {
                             brewRLChild.push("<a href=" + brew[i].website_url + "><button>" + brew[i].name + "</button></a>");
                         }
