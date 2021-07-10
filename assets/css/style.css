@@ -120,7 +120,7 @@ span {
 }
 
 
-button {
+button, .newBtn {
         margin-top: 10px;
         margin-right: 10px;
         background-color: var(--TM-Blue);
@@ -129,15 +129,16 @@ button {
         border-radius: 10px;
         border: none;
         display: inline-block;
-        
+        text-decoration: none;
 }
 
 
-button:hover {
+button:hover, .newBtn:hover {
         background-color: var(--TM-Light);
         color: var(--TM-Blue);
         border-radius: 10px;
         border: none;
+        text-decoration: none;
         
 }
 
