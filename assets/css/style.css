@@ -108,7 +108,7 @@ span {
         background-color: none;
         color: var(--TM-Black-Pearl);
         margin: 25px;  
-       min-width: 500px;
+       /* min-width: 500px; */
        padding: 10px;
        border-radius: 10px;
 }
@@ -158,4 +158,9 @@ button:hover {
         background-color: var(--TM-Light);
         color: var(--TM-Black-Pearl);
         border: none;
+}
+
+.disabled {
+        background-color: white;
+        border: 2px solid var(--TM-Gray);
 }
