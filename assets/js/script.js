@@ -271,8 +271,12 @@ function playWithData(data) {
                     var brewRLChild = [];
                     var latLon = [];
                     for (var i=0; i < 3; i++) {
-                        
-                        brewRLChild.push("<a href=" + brew[i].website_url + "><button>" + brew[i].name + "</button></a>");
+                        if (brew[i].website_url === null) {
+                            //Should we add a class to make the button
+                            brewRLChild.push("<a href=" + brew[i].website_url + "><button class='disabled'>" + brew[i].name + "</button></a>");
+                        } else {
+                            brewRLChild.push("<a href=" + brew[i].website_url + "><button>" + brew[i].name + "</button></a>");
+                        }
                         latLon.push(brew[i].latitude + "," + brew[i].longitude + "|");
                     }
                     //var brewRLChildEl = document.createElement("div");
