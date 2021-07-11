@@ -18,15 +18,16 @@ var keyword;
 
 //Get content from local storage for use
 function init() {
-    var eventForm = document.querySelector("#myForm");
-    console.log(eventForm);
-    eventForm.addEventListener("submit", searchEvent);
-    //getSearchFromURL();
+    /*Back button functionality
+        //var eventForm = document.querySelector("#myForm");
+        //console.log(eventForm);
+        //eventForm.addEventListener("submit", searchEvent);
+        //getSearchFromURL();
+    */
 
     if (localStorage.getItem("savedTicketInfo")) {
         savedTicketInfo = JSON.parse(localStorage.getItem("savedTicketInfo"));
         makeButtonsFromSaved(savedTicketInfo)
-        return savedTicketInfo;
     }
 }
 
@@ -34,8 +35,8 @@ function init() {
 function makeButtonsFromSaved(savedTicketInfo) {
     for (var i = 0; i < savedTicketInfo.length; i++) {
         var btnx = document.createElement("button");
-        btnx.textContent = savedTicketInfo[i].eventName; //Need to replace city here
-        btnx.classList.add("saveBtn", "event"); //Add appropriate classes here and when they are first created in current session
+        btnx.textContent = savedTicketInfo[i].eventName;
+        btnx.classList.add("saveBtn", "event"); 
         btnx.setAttribute("id", savedTicketInfo[i].recordID);
         eventListEl.appendChild(btnx);
     }
@@ -69,7 +70,6 @@ function search() {
         return response.json();
     })
     .then(function (data) {
-        console.log(data);
         playWithData(data);
       });
 } 
@@ -108,10 +108,11 @@ function playWithData(data) {
         var btn = document.createElement("button");
         btn.textContent = newEventInfo.eventName;
         btn.setAttribute("id", newEventInfo.recordID);
-        btn.classList.add("saveBtn", "event"); //Add whatever classes you want for style
+        btn.classList.add("saveBtn", "event");
         eventListEl.appendChild(btn);
     }
 
+    //Clear parent elements to prevent old results from showing in the results list
     for (var i=0; i < 5; i++) {
         if (document.getElementById("imageParentResult"+i)) {
             document.getElementById("imageParentResult"+i).innerHTML = "";
@@ -128,22 +129,16 @@ function playWithData(data) {
         if (document.getElementById("brewMapParentResult"+i)) {
             document.getElementById("brewMapParentResult"+i).innerHTML = "";
         };
-        //if (document.getElementById("beerParentResult"+i)) {
-        //    document.getElementById("beerParentResult"+i).innerHTML = "";
-        //};
-
     }
 
     //Loop through our events and pull out useful content for display.  Display it to the screen.
     for (var i=0; i < data._embedded.events.length; i++) {
 
-        //resultListEli = document.getElementById("result"+i);
         let imageParentEl = document.getElementById("imageParentResult"+i);
         let contentParentEl = document.getElementById("contentParentResult"+i);
         let brewRLParentEl = document.getElementById("brewRLParentResult"+i);
         let seatMapParentEl = document.getElementById("seatMapParentResult"+i);
         let brewMapParentEl = document.getElementById("brewMapParentResult"+i);
-        //let beerParentEl = document.getElementById("beerParentResult"+i);
 
         resultEl = document.getElementById('result'+ i);
 
@@ -151,14 +146,14 @@ function playWithData(data) {
         var eventTitle = baseData.name;
 
 
-        //If a venue exists then post results on screen for the event (could have 0-5 results)
+        //If a venue exists then pull more data and post results on screen for the event (could have 0-5 results)
         if (eventTitle) {
-            //Add a statement here to unhide resultListEli (this should then only display content for 0-5 results returned)
+            
             if (baseData.hasOwnProperty("_embedded")){
                 var baseData2 = baseData._embedded.venues[0];
-                
             }
 
+            //Event image
             if (baseData.hasOwnProperty("images")){
                 var eventImage = baseData.images[0].url;
 
@@ -168,7 +163,7 @@ function playWithData(data) {
                 imageParentEl.appendChild(eventImageEl);
             }
 
-            //var eventTitle = baseData.name;
+            //Event Title
             var eventTitleEl = document.createElement("h3");
             eventTitleEl.setAttribute("id", "result"+i+"eventTitle");
             eventTitleEl.textContent = "Event: " + eventTitle + " ";
@@ -176,6 +171,7 @@ function playWithData(data) {
 
             var eventVenueEl = document.createElement("p");
             if (baseData.hasOwnProperty("_embedded")){
+                //Venue details
                 if (baseData2.hasOwnProperty("name")){
                     var eventVenue = baseData2.name;
                     eventVenueEl.setAttribute("id", "result"+i+"Venue");
@@ -193,23 +189,20 @@ function playWithData(data) {
                 if (baseData2.hasOwnProperty("state")){
                     var eventState = baseData2.state.stateCode;
 
-                    //var eventStateEl = document.createElement("span");
-                    //eventStateEl.setAttribute("id", "result"+i+"State");
-                    //eventStateEl.textContent = eventState + " ";
-                    //eventVenueEl.appendChild(eventStateEl);
-
                     eventCityEl.textContent = "Location: " + eventCity + ", " + eventState + " ";
                     eventVenueEl.appendChild(eventCityEl);
                 }
                 if (baseData2.hasOwnProperty("location")){
-                    //Get lat/lon
+                    //Get lat/lon and set a url for brewery results
                     var eventLat = baseData2.location.latitude;
                     var eventLon = baseData2.location.longitude;
                     var brewRL = "https://api.openbrewerydb.org/breweries?per_page=3&page=1&by_dist="+eventLat+","+eventLon;
                 }            
             }
     
+            
             if (baseData.dates.hasOwnProperty("start")){
+                //Start Date and Time
                 if (baseData.dates.start.hasOwnProperty("localDate")){
                     var startDate = baseData.dates.start.localDate;
                     startDate = moment(startDate, "YYYY-MM-DD").format("MM/DD/YYYY");
@@ -230,6 +223,7 @@ function playWithData(data) {
                 eventVenueEl.appendChild(eventStartDateEl);
             }
     
+            //Buy Tickets Link
             var url = baseData.url;
             var eventUrlEl = document.createElement("div");
             eventUrlEl.setAttribute("id", "result"+i+"Url");
@@ -237,6 +231,7 @@ function playWithData(data) {
                 eventUrlEl.classList.add("newBtn");
                 contentParentEl.appendChild(eventUrlEl);
     
+            //Cost
             if (baseData.hasOwnProperty("priceRanges")){
                 var priceRangeMin = baseData.priceRanges[0].min;
                 var priceRangeMax = baseData.priceRanges[0].max;
@@ -247,6 +242,7 @@ function playWithData(data) {
                 eventVenueEl.appendChild(eventPriceRangeEl);
             }
 
+            //Seat Map
             if (baseData.hasOwnProperty("seatmap")){
                 var seatMap = baseData.seatmap.staticUrl;
 
@@ -256,11 +252,7 @@ function playWithData(data) {
                 seatMapParentEl.appendChild(seatMapEl);
             }
 
- 
-
-            //This is new.  I also set an event listener
-            //var brewButtonEl = document.createElement("div");
-            //brewButtonEl.innerHTML = "<a href=" + brewRLs[i] + "><button> Map 3 Closest Breweries </button></a>";
+            //Get brewery results from venue lat/lon and generated url
             if (brewRL) {
                 fetch(brewRL, {
     
@@ -269,17 +261,12 @@ function playWithData(data) {
                     return response.json();
                 })
                 .then(function (brew) {
-                    console.log(brew);
-                    //var bURL = "<a href=" + url + "><button> Buy Tickets </button></a>";
-                    //Simply generate links and info about the closest 3 breweries and put on screen.
-                    
-                    //var brewRLEl = document.createElement("div");
-                    //contentParentEl.appendChild(brewRLEl);
                     var brewRLChild = [];
                     var latLon = [];
+                    //Get data of the 3 brewery results for each event result
                     for (var i=0; i < 3; i++) {
+                        //Check to see if there is a website.  Not all breweries have websites.
                         if (brew[i].website_url === null) {
-                            //Should we add a class to make the button
                             brewRLChild.push("<button class='disabled' disabled>" + brew[i].name + " (no website)</button><br>");
                         } else {
                             brewRLChild.push("<a href=" + brew[i].website_url + " class='newBtn'>" + brew[i].name + "</a><br>");
@@ -288,35 +275,21 @@ function playWithData(data) {
                     }
                     brewRLParentEl.innerHTML = brewRLChild[0] + brewRLChild[1] + brewRLChild[2];
  
+                    //Plot the brewery results on a map using the lat/lon from the brewery API call
                     var latLonJoined = latLon.join("");
 
                     var mapURL = "https://maps.googleapis.com/maps/api/staticmap?&size=300x300&markers=color:blue|label:B|" + latLonJoined + "&key=AIzaSyAIWx_G_5naZts10KidHOhvxj9mzJHP_Jw";
                     
                     var brewMapEl = document.createElement("img");
-                    //var brewMapBtn = document.createElement("button") //Create Show Brew Map Button
-                    //brewMapBtn.textContent = "Show Brew Map" //text for button
-                    //brewMapBtn.setAttribute("id", "result"+i+"brewBtn")//set ID for button
-                    //brewMapBtn.setAttribute("class", "brewBtn")
                     
                     brewMapEl.src = mapURL;
                     brewMapEl.setAttribute("id", "result"+i+"brewMap");
-                    //brewMapEl.setAttribute("class")// added hide class to map - will be removed on click
                     
-                    //brewMapParentEl.appendChild(brewMapBtn);
                     brewMapParentEl.appendChild(brewMapEl);
-                    
-                    //brewMapParentEl.addEventListener("click", showBrewMap);
                 });
             }
         } 
-
-    
-            var tempObject = {eventName, eventVenue, eventCity, eventState, startDate, localTime, eventImage, seatMap, url, priceRangeMin, priceRangeMax, eventLat, eventLon, brewRL};
-            console.log("Item: " + i)
-            console.log(tempObject);
-
             resultEl.classList.remove("hide");
-    
     }
             
     //Show Search Results Div
@@ -329,11 +302,11 @@ function playWithData(data) {
             }
         }
         
-
     //Empty the search window
     searchText.value = "";
 }
 
+/*
 function getSearchFromURL() {
     // get search params
     var searchQuery = new URLSearchParams(window.location.search)
@@ -370,6 +343,7 @@ function getSearchFromURL() {
     event.preventDefault();
     getSearchFromURL()
   });
+  */
 
 init();
 searchBtnEl.addEventListener("click", getEvent);
