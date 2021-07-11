@@ -25,7 +25,7 @@ It is an application that allows a user to search and find upcoming events and g
 The local storage is used here to store previous searched events up to three. If any non-related name is searched, it will pop up a alert box. For the conveninet, and clear look, we have made it simple and colorful with appripriate css style and google fonts. 
 
 ## Demo clip
-https://github.com/JHU-Project1/Project1/blob/eds_branch/assets/img/Produce_1_Trim.mp4
+https://user-images.githubusercontent.com/80861572/125213807-ea084080-e281-11eb-8f7a-a9f1d77952f2.mp4
 
 ## Screenshots:
 Before searched any events.
