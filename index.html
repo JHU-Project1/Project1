@@ -24,18 +24,18 @@
 
         <body class="uk-background-default">
                 <div class="header">
-                        <h1>Event Finder+</h1>
+                        <h1><i class="fas fa-ticket-alt"></i>    Event Finder+    <i class="fas fa-ticket-alt"></i><br><p id="subTitle">Your ticket to fun</p></h1>
                 </div>
 
                 <div class="uk-flex-center" uk-grid>
                         <!-- SEARCH BOX -->
                         <div class="uk-height-large">
-                                <div class="uk-card uk-card-default uk-card-body ">
+                                <form class="uk-card uk-card-default uk-card-body" id="myForm" method="GET">
                                         <input class="uk-input" id="searchText" type="text"
-                                                placeholder="Search for an Event">
+                                                placeholder="Search for an Event" name="event"/>
                                         <button class="uk-button uk-button-default uk-width-1-1 uk-margin-small-bottom"
                                                 type="submit" id="searchBtn" class="saveBtn">Search</button>
-                                </div>
+                                </form>
                                 <p class="hide errorMessage"><span><i class="fas fa-skull-crossbones"></i></span> No
                                         events matching your search exist. Try again. <span><i
                                                         class="fas fa-skull-crossbones"></i></span></p>
