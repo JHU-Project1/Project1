@@ -237,7 +237,7 @@ function playWithData(data) {
             var eventUrlEl = document.createElement("div");
             eventUrlEl.setAttribute("id", "result"+i+"Url");
                 eventUrlEl.innerHTML = "<a href=" + url + "><button> Buy Tickets </button></a>";
-                eventUrlEl.classList.add("newBtn");
+                //eventUrlEl.classList.add("newBtn");
                 contentParentEl.appendChild(eventUrlEl);
     
             //Cost
