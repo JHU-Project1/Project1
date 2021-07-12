@@ -27,6 +27,8 @@ The local storage is used here to store previous searched events up to three. If
 ## Demo clip
 https://user-images.githubusercontent.com/80861572/125213807-ea084080-e281-11eb-8f7a-a9f1d77952f2.mp4
 
+Higher Res: https://github.com/JHU-Project1/Project1/blob/eds_branch/assets/img/EventFinder%2B%20Higher%20Res%20Vid.mp4
+
 ## Screenshots:
 Before searched any events.
    ![](./assets/images/before-search-city.png) 
