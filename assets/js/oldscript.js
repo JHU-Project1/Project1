@@ -18,19 +18,17 @@ var keyword;
 
 //Get content from local storage for use
 function init() {
-    //Back button functionality
+    /*Back button functionality
+        //var eventForm = document.querySelector("#myForm");
+        //console.log(eventForm);
+        //eventForm.addEventListener("submit", searchEvent);
+        //getSearchFromURL();
+    */
 
     if (localStorage.getItem("savedTicketInfo")) {
         savedTicketInfo = JSON.parse(localStorage.getItem("savedTicketInfo"));
         makeButtonsFromSaved(savedTicketInfo)
     }
-
-    //Back button functionality
-    eventName = getSearchFromURL().toUpperCase();;
-    if (eventName) {
-        search();
-    }
-
 }
 
 //Turn saved info into event buttons
@@ -48,9 +46,6 @@ function makeButtonsFromSaved(savedTicketInfo) {
 function getEvent(event) {
     event.preventDefault();
     eventName = searchText.value.toUpperCase();
-    //Back button functionality
-    searchEvent(event);
-    //Execute search
     search();
 }
 
@@ -58,16 +53,12 @@ function getEvent(event) {
 function previousEvent(event) {
     event.preventDefault();
     eventName = event.target.textContent;
-    //Back button functionality
-    searchEvent(event);
-    //Execute search
     search();
 }
 
 
 //Take in event and get API response
 function search() {
-
     keyword = "keyword=" + eventName;
     //Query the API for an event based upon keyword and pagesize
     var specURL = baseApiUrl + base2ApiUrl + keyword + pageSize + apiKey;
@@ -315,35 +306,44 @@ function playWithData(data) {
     searchText.value = "";
 }
 
-//Check for search keyword in URL
-function getSearchFromURL(event) {
-    if (event) {
-        event.preventDefault();
-    }
+/*
+function getSearchFromURL() {
     // get search params
-    var searchQuery = new URLSearchParams(window.location.search);
+    var searchQuery = new URLSearchParams(window.location.search)
     // check if an event is in the URL
     if (searchQuery.has("event")) {
-        return searchQuery.get("event");
+        console.log("search query has an event");
+      // get event name and show it on screen
+      eventName = searchQuery.get("event")
+      //showEventNameOnScreen(eventName)
+      search()
+    } else {
+        console.log("I'm here");
+
+      //showEventNameOnScreen("")
     }
-    return false;
   }
 
-  //Push search keyword into URL
   function searchEvent(event) {
+    console.log("In searchEvent function");
     event.preventDefault();
     // get value of input
-    var eventName = searchTxtEl.value
+    var eventNameTemp = searchTxtEl.value
     // save to url
-    var pageUrl = '?event=' + window.encodeURIComponent(eventName);
+    var pageUrl = '?event=' + window.encodeURIComponent(eventNameTemp);
     window.history.pushState('', '', pageUrl);
+    // update screen
+    //showEventNameOnScreen(eventName);  
   }
-  //Listen for back button
+  //function showEventNameOnScreen(eventName) {
+  //  document.querySelector("#searchedEvent").textContent = eventName
+  //}
+  // listen for state on back
   window.addEventListener("popstate", function (event) {
     event.preventDefault();
     getSearchFromURL()
   });
-
+  */
 
 init();
 searchBtnEl.addEventListener("click", getEvent);
@@ -356,3 +356,4 @@ searchTxtEl.addEventListener("keydown", function(event) {
 });
 
 eventListEl.addEventListener("click", previousEvent);
+//brewMapParentEl.addEventListener("click", showBrewMap);
