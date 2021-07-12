@@ -1,30 +1,33 @@
 # Project1(Event Finder+)
 
 ### Description
-Project1 is a first JHU Bootcamp project assignment. The title of this assignmets is Event Finder+.
-It is an application that allows a user to search and find upcoming events and get help to make the travel decisions. This app will run in the browser and feature dynamically updated HTML, CSS, and javascript. This application emphasizes the use of API to get the genuine informations and interact with user given data and generates a specific events details and appends a final page.
+Project 1 is the first JHU Bootcamp team project collaboration, focused on: html, css, javascript, use of local storage, and respoonsive web design. The title of our innovative project idea is Event Finder+.  It is an application that allows a user to search and find upcoming events and local breweries near the venue. This app will run in the browser and feature dynamically updated HTML, CSS, and javascript. This application emphasizes the use of server-side APIs to get information from commercially-available sources and interact with user input data to generate the event, brewery, and map details.
 
 ## Feature List:
 
 * User can see the top five events list.
-* User can view the details about time, location, time, and price.
-* User can view the stadium map.
-* User can direct access to buy the ticket.
+* User can view the details about date, time, and venue.
+* User can view local breweries on a map with links to the breweries.
+* User can view the event image and stadium map.
+* User have direct access to buy tickets.
 
 ## Resources:
 
-- To acess with date and time, it has built up with the [Moment.js](https://momentjs.com/) library.
-- For best and attractive css style, we used [UIkit](https://getuikit.com/docs/introduction) 
-- For the best fonts experince, it has buit up with the [Fontawesome](https://fontawesome.com)
+- For css styling, the application uses [UIkit](https://getuikit.com/docs/introduction).
+- To format date and time, the application uses the [Moment.js](https://momentjs.com/) library.
+- For additional fonts, the application uses [Fontawesome](https://fontawesome.com) and [GoogleFonts](https://developers.google.com/fonts).
 
 #### APIs list:
-* Wikipedia/Google
-* Ticketmaster
-* Stretch/Travel API
+* [Ticketmaster](https://developer.ticketmaster.com/products-and-docs/apis/getting-started/)
+* [Open Brewery DB](https://www.openbrewerydb.org/documentation/01-listbreweries)
+* [Google Maps Static API](https://developers.google.com/maps/documentation/maps-static/overview)
 
-The local storage is used here to store previous searched events up to three. If any non-related name is searched, it will pop up a alert box. For the conveninet, and clear look, we have made it simple and colorful with appripriate css style and google fonts. 
+The local storage is used here to store previous searched events up to three. If any non-related name is searched, it will notify the user. For a convenient and clear look, we have made the UI simple and attractive with appripriate css style and google fonts. 
 
 ## Demo clip
+https://user-images.githubusercontent.com/80861572/125213807-ea084080-e281-11eb-8f7a-a9f1d77952f2.mp4
+
+Higher Res: https://github.com/JHU-Project1/Project1/blob/eds_branch/assets/img/EventFinder%2B%20Higher%20Res%20Vid.mp4
 
 ## Screenshots:
 Before searched any events.
