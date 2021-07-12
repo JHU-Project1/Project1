@@ -1,7 +1,7 @@
 # Project1(Event Finder+)
 
 ### Description
-Project 1 is the first JHU Bootcamp team project collaboration, focused on: html, css, javascript, use of local storage, and respoonsive web design. The title of our innovative project idea is Event Finder+.  It is an application that allows a user to search and find upcoming events and local breweries near the venue. This app will run in the browser and feature dynamically updated HTML, CSS, and javascript. This application emphasizes the use of server-side APIs to get information from commercially-available sources and interact with user input data to generate the event, brewery, and map details.
+Project 1 is the first JHU Bootcamp team project collaboration, focused on: html, css, javascript, use of local storage, and responsive web design. The title of our innovative project idea is Event Finder+.  It is an application that allows a user to search and find upcoming events and local breweries near the venue. This app will run in the browser and feature dynamically updated HTML, CSS, and javascript. This application emphasizes the use of server-side APIs to get information from commercially-available sources and interact with user input data to generate the event, brewery, and map details.
 
 ## Feature List:
 
