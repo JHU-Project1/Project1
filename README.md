@@ -25,7 +25,7 @@ Project 1 is the first JHU Bootcamp team project collaboration, focused on: html
 The local storage is used here to store previous searched events up to three. If any non-related name is searched, it will notify the user. For a convenient and clear look, we have made the UI simple and attractive with appripriate css style and google fonts. 
 
 ## Demo clip (w/audio)
-https://user-images.githubusercontent.com/80861572/125213807-ea084080-e281-11eb-8f7a-a9f1d77952f2.mp4
+https://user-images.githubusercontent.com/80861572/125372061-2d30e500-e350-11eb-96e2-c7cf7c0d763a.mp4
 
 Higher Res: https://github.com/JHU-Project1/Project1/blob/eds_branch/assets/img/EventFinder%2B%20Higher%20Res%20Vid.mp4
 
