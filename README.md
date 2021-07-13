@@ -32,7 +32,7 @@ Higher Res: https://github.com/JHU-Project1/Project1/blob/eds_branch/assets/img/
 
 ## Links :
 
-* Link for the deployed application [Event FInder+](https://jhu-project1.github.io/Project)
+* Link for the deployed application [Event FInder+](https://jhu-project1.github.io/Project1)
 * Link for the Github repository [Host by Github](https://github.com/JHU-Project1/Project1)
 
 
